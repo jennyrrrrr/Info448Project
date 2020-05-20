@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@color/purple"
+        app:layout_constraintTop_toTopOf="parent">
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/btn_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/ic_edit_black_24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="10dp"
+        android:tint="@color/grey"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/main_profile_image"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        tools:src="@tools:sample/avatars"
+        app:civ_border_color="#fff"
+        app:civ_border_width="2dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/main_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="Nickname"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/main_profile_image"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/main_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\@ Username"
+        android:layout_marginTop="3dp"
+        app:layout_constraintTop_toBottomOf="@id/main_nickname"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/main_bio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:text="Bio: Add a bio to you profile,\n Add a bio to you profile..."
+        app:layout_constraintTop_toBottomOf="@id/main_username"
+        android:layout_marginTop="18dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <ImageView
+        android:id="@+id/icon_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_location_on_black_24dp"
+        app:layout_constraintTop_toBottomOf="@id/main_bio"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="13dp"
+        android:layout_marginLeft="155dp"
+        android:tint="@color/grey"/>
+
+    <TextView
+        android:id="@+id/txt_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="City, State"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="7dp"
+        app:layout_constraintTop_toBottomOf="@id/main_bio"
+        app:layout_constraintLeft_toRightOf="@id/icon_location"/>
+
+    <TextView
+        android:id="@+id/posts_replies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="@string/posts_replies"
+        app:layout_constraintTop_toBottomOf="@id/txt_location"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/purple"/>
+
+    <View
+        android:id="@+id/horizontal_line"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/posts_replies"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_post"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_line"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
