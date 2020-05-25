@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.profile_page.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +15,16 @@ class MainActivity : AppCompatActivity() {
 
         btnProfile.setOnClickListener { switchToProfile() }
 
+        supportFragmentManager.addOnBackStackChangedListener {
+            val hasBackEntries = supportFragmentManager.backStackEntryCount > 1
+            supportActionBar?.setDisplayHomeAsUpEnabled( hasBackEntries)
+
+            tabBar?.visibility = if (hasBackEntries) {
+                View.GONE
+            } else {
+                View.VISIBLE
+            }
+        }
     }
 
     private fun switchToProfile() {
@@ -24,6 +35,11 @@ class MainActivity : AppCompatActivity() {
             .add(R.id.fragContainer, profileFragment, ProfileFragment.TAG)
             .addToBackStack(ProfileFragment.TAG)
             .commit()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        supportFragmentManager.popBackStack()
+        return super.onSupportNavigateUp()
     }
 
 }

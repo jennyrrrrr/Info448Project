@@ -2,13 +2,11 @@ package com.example.info448project
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.edit_profile.*
 
 class EditProfile: AppCompatActivity() {
-
-    companion object {
-        const val OUT_USER = "OUT_USER"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,19 +14,26 @@ class EditProfile: AppCompatActivity() {
         title = "Edit Profile"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-//        btnComplete.setOnClickListener { userInfo(userInfo) }
+        btnComplete.setOnClickListener {
+            userInfo()
+        }
+
+        btnLogout.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
-    private fun userInfo(userInfo: UserInfo) {
-//        val intent = Intent(this, ProfileFragment::class.java)
-//        intent.putExtra(OUT_USER, userInfo)
-//        startActivity(intent)
+    private fun userInfo() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onNavigateUp(): Boolean {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        return super.onSupportNavigateUp()
+        finish()
+        return super.onNavigateUp()
     }
 
 

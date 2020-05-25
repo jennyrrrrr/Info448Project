@@ -17,4 +17,5 @@
     <string name="connect_with_your_local_community">CONNECT WITH YOUR LOCAL COMMUNITY</string>
     <string name="real_time_stats_up_to_date_health_info_connect_with_community">REAL TIME STATS, UP-TO-DATE HEALTH INFO, CONNECT WITH COMMUNITY</string>
     <string name="get_started">Get Started</string>
+    <string name="log_out">Log out</string>
 </resources>

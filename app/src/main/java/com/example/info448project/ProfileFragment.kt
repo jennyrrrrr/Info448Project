@@ -1,11 +1,11 @@
 package com.example.info448project
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.profile_page.*
 
 class ProfileFragment: Fragment() {
@@ -31,8 +31,14 @@ class ProfileFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnEdit.setOnClickListener {
-            val intent = Intent(context, EditProfile::class.java)
-            startActivity(intent)
+            val fragmentManager: FragmentManager = activity!!.supportFragmentManager
+
+            fragmentManager
+                .beginTransaction()
+                .add(R.id.fragContainer, EditProfileFragment(), EditProfileFragment.TAG)
+                .addToBackStack(EditProfileFragment.TAG)
+                .commit()
         }
     }
+
 }
