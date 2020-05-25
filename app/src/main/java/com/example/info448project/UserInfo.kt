@@ -7,5 +7,6 @@ data class UserInfo (
     val City: String,
     val State: String,
     val Bio: String,
-    val profilePicURL: String
+    val profilePicURL: String,
+    val backGroundPicURL: String
 )

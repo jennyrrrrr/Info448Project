@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">Info448Project</string>
     <string name="posts_replies">Posts &amp; replies</string>
+    <string name="name">Name</string>
+    <string name="location">Location</string>
+    <string name="add_your_location">Add your location</string>
+    <string name="nickname">Nickname</string>
+    <string name="username">\@ Username</string>
+    <string name="bio_add_a_bio">Bio: Add a bio to you profile</string>
+    <string name="city_state">City, State</string>
+    <string name="post_and_reply_contents">Post and reply contents ...</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="log_in">LOG IN</string>
+    <string name="password">Password</string>
+    <string name="username_or_email">Username or Email</string>
+    <string name="c19_support">C19-SUPPORT</string>
+    <string name="connect_with_your_local_community">CONNECT WITH YOUR LOCAL COMMUNITY</string>
+    <string name="real_time_stats_up_to_date_health_info_connect_with_community">REAL TIME STATS, UP-TO-DATE HEALTH INFO, CONNECT WITH COMMUNITY</string>
+    <string name="get_started">Get Started</string>
 </resources>

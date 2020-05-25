@@ -17,13 +17,13 @@
     </FrameLayout>
 
     <LinearLayout
-        android:id="@+id/tab_bar"
+        android:id="@+id/tabBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
-            android:id="@+id/btn_data"
+            android:id="@+id/btnData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_show_chart_black_24dp"
@@ -32,7 +32,7 @@
             android:tint="@color/purple"/>
 
         <ImageView
-            android:id="@+id/btn_forum"
+            android:id="@+id/btnForum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_forum_black_24dp"
@@ -41,7 +41,7 @@
             android:tint="@color/purple"/>
 
         <ImageView
-            android:id="@+id/btn_news"
+            android:id="@+id/btnNews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_public_black_24dp"
@@ -50,7 +50,7 @@
             android:tint="@color/purple"/>
 
         <ImageView
-            android:id="@+id/btn_profile"
+            android:id="@+id/btnProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_account_circle_black_24dp"
@@ -63,6 +63,6 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="#808080"
-        app:layout_constraintTop_toTopOf="@id/tab_bar" />
+        app:layout_constraintTop_toTopOf="@id/tabBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

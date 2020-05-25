@@ -14,7 +14,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/btn_edit"
+        android:id="@+id/btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -25,7 +25,7 @@
         android:tint="@color/grey"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/main_profile_image"
+        android:id="@+id/mainProfileImage"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:src="@drawable/profile_placeholder"
@@ -37,86 +37,87 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
-        android:id="@+id/main_nickname"
+        android:id="@+id/tvNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:text="Nickname"
+        android:text="@string/nickname"
         android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@id/main_profile_image"
+        app:layout_constraintTop_toBottomOf="@id/mainProfileImage"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
-        android:id="@+id/main_username"
+        android:id="@+id/tvMainUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="\@ Username"
+        android:text="@string/username"
         android:layout_marginTop="3dp"
-        app:layout_constraintTop_toBottomOf="@id/main_nickname"
+        app:layout_constraintTop_toBottomOf="@id/tvNickname"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
-        android:id="@+id/main_bio"
+        android:id="@+id/tvMainBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000"
-        android:text="Bio: Add a bio to you profile,\n Add a bio to you profile..."
-        app:layout_constraintTop_toBottomOf="@id/main_username"
+        android:text="@string/bio_add_a_bio"
+        app:layout_constraintTop_toBottomOf="@id/tvMainUsername"
         android:layout_marginTop="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <ImageView
-        android:id="@+id/icon_location"
+        android:id="@+id/ivLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_location_on_black_24dp"
-        app:layout_constraintTop_toBottomOf="@id/main_bio"
+        app:layout_constraintTop_toBottomOf="@id/tvMainBio"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="11dp"
         android:layout_marginLeft="150dp"
         android:tint="@color/grey"/>
 
     <TextView
-        android:id="@+id/txt_location"
+        android:id="@+id/tvLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="City, State"
+        android:text="@string/city_state"
         android:layout_marginTop="12dp"
         android:layout_marginLeft="7dp"
-        app:layout_constraintTop_toBottomOf="@id/main_bio"
-        app:layout_constraintLeft_toRightOf="@id/icon_location"/>
+        app:layout_constraintTop_toBottomOf="@id/tvMainBio"
+        app:layout_constraintLeft_toRightOf="@id/ivLocation"/>
 
     <TextView
-        android:id="@+id/posts_replies"
+        android:id="@+id/tvPostsReplies"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:textStyle="bold"
         android:text="@string/posts_replies"
-        app:layout_constraintTop_toBottomOf="@id/txt_location"
+        app:layout_constraintTop_toBottomOf="@id/tvLocation"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="18dp"
         android:layout_marginLeft="15dp"
         android:textColor="@color/purple"/>
 
     <View
-        android:id="@+id/horizontal_line"
+        android:id="@+id/hrLine"
         android:layout_width="wrap_content"
         android:layout_height="2dp"
         android:layout_marginTop="5dp"
         android:background="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/posts_replies"/>
+        app:layout_constraintTop_toBottomOf="@id/tvPostsReplies"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_post"
-        app:layout_constraintTop_toBottomOf="@id/horizontal_line"
+        app:layout_constraintTop_toBottomOf="@id/hrLine"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 

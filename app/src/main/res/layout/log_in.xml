@@ -10,7 +10,7 @@
         android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log in"
+        android:text="@string/log_in"
         android:textSize="24sp"
         android:layout_marginTop="100dp"
         android:textColor="#fff"
@@ -19,7 +19,7 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
-        android:id="@+id/etUserName"
+        android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -27,7 +27,7 @@
         android:padding="18dp"
         android:inputType="textPersonName"
         android:layout_marginTop="50dp"
-        android:text="Username or Email"
+        android:text="@string/username_or_email"
         android:background="@drawable/text_box_top"
         android:textSize="14sp"
         android:layout_marginLeft="20dp"
@@ -48,16 +48,16 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/text_box_bottom"
         android:inputType="textPersonName"
-        android:text="Password"
+        android:text="@string/password"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etUserName"/>
+        app:layout_constraintTop_toBottomOf="@id/etUsername"/>
 
     <TextView
         android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forgot Password?"
+        android:text="@string/forgot_password"
         android:textSize="12sp"
         android:layout_marginTop="20dp"
         android:textColor="#fff"
@@ -69,7 +69,7 @@
         android:id="@+id/btnLogin2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOG IN"
+        android:text="@string/log_in"
         android:paddingLeft="80dp"
         android:paddingRight="80dp"
         android:textColor="#fff"
