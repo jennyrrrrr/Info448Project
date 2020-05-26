@@ -7,9 +7,11 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.example.info448project.fragment.ProfileFragment
 import com.example.info448project.R
+import com.example.info448project.fragment.DataOutputFragment
+import com.example.info448project.fragment.StateCardFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +30,20 @@ class MainActivity : AppCompatActivity() {
                 View.VISIBLE
             }
         }
+
+        // enable data fragment here
+        val dataOutputFragment = DataOutputFragment();
+        btnData.setOnClickListener {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
+                .addToBackStack(DataOutputFragment.TAG)
+                .commit()
+        }
     }
+
+    private fun getDataOutputFragment() = supportFragmentManager.findFragmentByTag(DataOutputFragment.TAG) as? DataOutputFragment
+
 
     private fun switchToProfile() {
         val profileFragment =

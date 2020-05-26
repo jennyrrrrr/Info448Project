@@ -20,4 +20,16 @@
     <string name="log_out">Log out</string>
     <string name="create_account">Create Account</string>
     <string name="email">Email</string>
+    <string name="select_a_location">Select a location</string>
+    <string name="here_is_covid_19_data_in_the_state_of_washington">Here is Covid-19 Data in the state of Washington</string>
+    <string name="the_data_below_is_provided_by_cdc">The Data below is provided by CDC:</string>
+    <string name="_0">0</string>
+    <string name="negative">Negative</string>
+    <string name="positive">Positive</string>
+    <string name="in_hospital">In Hospital</string>
+    <string name="death">Death</string>
+    <string name="compare_with_yesterday">Compare with Yesterday:</string>
+    <string name="new_positive">New Positive</string>
+    <string name="new_death">New Death</string>
+    <string name="state">state</string>
 </resources>
