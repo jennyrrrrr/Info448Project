@@ -1,10 +1,11 @@
-package com.example.info448project
+package com.example.info448project.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.info448project.fragment.ProfileFragment
+import com.example.info448project.R
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.profile_page.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,11 +29,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun switchToProfile() {
-        val profileFragment = ProfileFragment()
+        val profileFragment =
+            ProfileFragment()
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragContainer, profileFragment, ProfileFragment.TAG)
+            .add(
+                R.id.fragContainer, profileFragment,
+                ProfileFragment.TAG
+            )
             .addToBackStack(ProfileFragment.TAG)
             .commit()
     }

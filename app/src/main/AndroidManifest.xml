@@ -11,23 +11,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".ProjectApplication">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activity.LoginActivity">
         </activity>
-        <activity android:name=".OnBoardingActivity">
+        <activity android:name=".activity.OnBoardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditProfile">
+        <activity android:name=".activity.CreateAccountActivity">
         </activity>
     </application>
 

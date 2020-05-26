@@ -1,4 +1,4 @@
-package com.example.info448project
+package com.example.info448project.model
 
 data class UserInfo (
     val username: String,

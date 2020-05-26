@@ -7,10 +7,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/tvLogin"
+        android:id="@+id/tvCreateAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/log_in"
+        android:text="@string/create_account"
         android:textSize="24sp"
         android:layout_marginTop="100dp"
         android:textColor="#fff"
@@ -19,20 +19,19 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textColor="@color/grey"
         android:padding="18dp"
-        android:inputType="textPersonName"
         android:layout_marginTop="50dp"
-        android:text="@string/username_or_email"
+        android:text="@string/email"
         android:background="@drawable/text_box_top"
         android:textSize="14sp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        app:layout_constraintTop_toBottomOf="@id/tvLogin"
+        app:layout_constraintTop_toBottomOf="@id/tvCreateAccount"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
@@ -50,13 +49,13 @@
         android:text="@string/password"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etUsername"/>
+        app:layout_constraintTop_toBottomOf="@id/etEmail"/>
 
     <TextView
-    android:id="@+id/tvForgotPassword"
+    android:id="@+id/tvLogin1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@string/forgot_password"
+    android:text="@string/log_in"
     android:textSize="12sp"
     android:layout_marginTop="20dp"
     android:textColor="#fff"
@@ -64,23 +63,11 @@
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"/>
 
-    <TextView
-        android:id="@+id/tvCreateAccount2"
+    <Button
+        android:id="@+id/btnCreateAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create_account"
-        android:textSize="12sp"
-        android:layout_marginTop="15dp"
-        android:textColor="#fff"
-        app:layout_constraintTop_toBottomOf="@id/tvForgotPassword"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-    <Button
-        android:id="@+id/btnLogin2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/log_in"
         android:paddingLeft="80dp"
         android:paddingRight="80dp"
         android:textColor="#fff"

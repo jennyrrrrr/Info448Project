@@ -1,14 +1,14 @@
-package com.example.info448project
+package com.example.info448project.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.info448project.R
+import com.example.info448project.activity.LoginActivity
 import kotlinx.android.synthetic.main.edit_profile.*
 
 class EditProfileFragment: Fragment() {
@@ -27,6 +27,8 @@ class EditProfileFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        activity?.setTitle("Edit Profile")
 
 //        btnComplete.setOnClickListener {
 //            userInfo()

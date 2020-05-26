@@ -1,4 +1,4 @@
-package com.example.info448project
+package com.example.info448project.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.info448project.ProjectApplication
+import com.example.info448project.R
+import kotlinx.android.synthetic.main.log_in.*
 import kotlinx.android.synthetic.main.profile_page.*
 
 class ProfileFragment: Fragment() {
@@ -16,7 +19,7 @@ class ProfileFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        title = "Profile"
+        activity?.setTitle("Profile")
     }
 
     override fun onCreateView(
@@ -39,6 +42,11 @@ class ProfileFragment: Fragment() {
                 .addToBackStack(EditProfileFragment.TAG)
                 .commit()
         }
+//        val username = etUsername.text.toString()
+//        (context?.applicationContext as? ProjectApplication)?.userManager.let { userManager ->
+//            userManager?.changeUsername(username)
+//        }
+
     }
 
 }
