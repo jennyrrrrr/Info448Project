@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.FragmentManager
 import com.example.info448project.fragment.ProfileFragment
 import com.example.info448project.R
 import com.example.info448project.fragment.DataOutputFragment
@@ -18,8 +19,6 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
         title = "C19-SUPPORT"
 
-        btnProfile.setOnClickListener { switchToProfile() }
-
         supportFragmentManager.addOnBackStackChangedListener {
             val hasBackEntries = supportFragmentManager.backStackEntryCount > 1
             supportActionBar?.setDisplayHomeAsUpEnabled( hasBackEntries)
@@ -31,30 +30,33 @@ class MainActivity : AppCompatActivity(){
             }
         }
 
-        // enable data fragment here
-        val dataOutputFragment = DataOutputFragment();
-        btnData.setOnClickListener {
-            supportFragmentManager
-                .beginTransaction()
-                .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
-                .addToBackStack(DataOutputFragment.TAG)
-                .commit()
-        }
+        showData()
+        btnProfile.setOnClickListener { showProfile() }
+        btnData.setOnClickListener { showData() }
     }
 
     private fun getDataOutputFragment() = supportFragmentManager.findFragmentByTag(DataOutputFragment.TAG) as? DataOutputFragment
 
+    // enable data fragment here
+    private fun showData() {
+        supportFragmentManager.popBackStack()
 
-    private fun switchToProfile() {
-        val profileFragment =
-            ProfileFragment()
-
+        val dataOutputFragment = DataOutputFragment();
         supportFragmentManager
             .beginTransaction()
-            .add(
-                R.id.fragContainer, profileFragment,
-                ProfileFragment.TAG
-            )
+            .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
+            .addToBackStack(DataOutputFragment.TAG)
+            .commit()
+    }
+
+    // enable profile fragment here
+    private fun showProfile() {
+        supportFragmentManager.popBackStack()
+
+        val profileFragment = ProfileFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragContainer, profileFragment, ProfileFragment.TAG)
             .addToBackStack(ProfileFragment.TAG)
             .commit()
     }

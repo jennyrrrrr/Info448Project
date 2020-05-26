@@ -41,7 +41,6 @@ class EditProfileFragment: Fragment() {
 
         btnComplete.setOnClickListener {
             val fragmentManager: FragmentManager = activity!!.supportFragmentManager
-
             fragmentManager.popBackStack()
         }
 

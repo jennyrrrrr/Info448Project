@@ -18,7 +18,6 @@ class ProfileFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity?.setTitle("Profile")
     }
 
     override fun onCreateView(
@@ -31,6 +30,7 @@ class ProfileFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.setTitle("Profile")
 
         btnEdit.setOnClickListener {
             val fragmentManager: FragmentManager = activity!!.supportFragmentManager

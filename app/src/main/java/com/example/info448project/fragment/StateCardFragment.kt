@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.info448project.CardStateAdptor
+import com.example.info448project.CardStateAdaptor
 import com.example.info448project.R
 
 class StateCardFragment: Fragment(){
@@ -15,7 +15,7 @@ class StateCardFragment: Fragment(){
         val TAG = StateCardFragment::class.java.simpleName
     }
 
-    private lateinit var cardStateAdptor: CardStateAdptor
+    private lateinit var cardStateAdaptor: CardStateAdaptor
 
     private val listOfStates: List<String> = listOf("Alabama","Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado",
         "Connecticut", "Delaware", "District Of Columbia", "Federated States Of Micronesia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois",
@@ -40,11 +40,11 @@ class StateCardFragment: Fragment(){
         val rvSongs = view.findViewById<RecyclerView>(R.id.rvState)
         val txChoose = view.findViewById<TextView>(R.id.txChoose)
 
-        cardStateAdptor = context?.let { CardStateAdptor(listOfStates, it) }!!
-        rvSongs.adapter = cardStateAdptor
+        cardStateAdaptor = context?.let { CardStateAdaptor(listOfStates, it) }!!
+        rvSongs.adapter = cardStateAdaptor
 
-        if (cardStateAdptor != null) {
-            cardStateAdptor.onStateClickListener = {state ->
+        if (cardStateAdaptor != null) {
+            cardStateAdaptor.onStateClickListener = { state ->
                 txChoose.text = state
             }
         }

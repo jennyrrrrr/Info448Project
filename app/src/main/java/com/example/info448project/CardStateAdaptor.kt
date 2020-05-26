@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-class CardStateAdptor(listOfState: List<String>, val context: Context): RecyclerView.Adapter<CardStateAdptor.StateViewHolder>() {
+class CardStateAdaptor(listOfState: List<String>, val context: Context): RecyclerView.Adapter<CardStateAdaptor.StateViewHolder>() {
 
     private val listOfStates: List<String> = listOfState
 
