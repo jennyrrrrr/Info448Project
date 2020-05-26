@@ -83,7 +83,7 @@
         android:tint="@color/grey"/>
 
     <TextView
-        android:id="@+id/tvLocation"
+        android:id="@+id/tvLocation2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/city_state"
@@ -99,7 +99,7 @@
         android:textSize="22sp"
         android:textStyle="bold"
         android:text="@string/posts_replies"
-        app:layout_constraintTop_toBottomOf="@id/tvLocation"
+        app:layout_constraintTop_toBottomOf="@id/tvLocation2"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"

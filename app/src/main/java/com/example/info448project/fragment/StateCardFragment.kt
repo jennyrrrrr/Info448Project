@@ -36,6 +36,7 @@ class StateCardFragment: Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.setTitle("Select State")
 
         val rvSongs = view.findViewById<RecyclerView>(R.id.rvState)
         val txChoose = view.findViewById<TextView>(R.id.txChoose)

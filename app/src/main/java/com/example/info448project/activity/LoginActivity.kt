@@ -29,8 +29,8 @@ class LoginActivity: AppCompatActivity() {
         }
 
         btnLogin2.setOnClickListener {
-            if (TextUtils.isEmpty(etUsername.text)) {
-                Toast.makeText(this, "Username can not be empty!", Toast.LENGTH_SHORT).show()
+            if (TextUtils.isEmpty(etUsername.text) || TextUtils.isEmpty(etPassword2.text)) {
+                Toast.makeText(this, "Username or Password can not be empty!", Toast.LENGTH_SHORT).show()
             } else {
                 accountManager.changeUsername(etUsername.text.toString())
                 closeKeyboard()
@@ -48,15 +48,6 @@ class LoginActivity: AppCompatActivity() {
             Toast.makeText(this, "Chance only comes once, you have to memorize your password!", Toast.LENGTH_SHORT).show()
         }
 
-//        btnLogin2.setOnClickListener {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//            val username = etUsername.text.toString()
-//            val password0 = "abc"
-//            (this.applicationContext as? ProjectApplication)?.userManager.let { userManager ->
-//                userManager?.login(username, password0)
-//            }
-//        }
     }
 
     private fun closeKeyboard() {

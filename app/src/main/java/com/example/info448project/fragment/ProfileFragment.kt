@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.info448project.ProjectApp
 import com.example.info448project.R
+import kotlinx.android.synthetic.main.edit_profile.*
 import kotlinx.android.synthetic.main.profile_page.*
 
 class ProfileFragment: Fragment() {
@@ -44,6 +45,12 @@ class ProfileFragment: Fragment() {
 
         tvNickname.text = (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
             accountManager?.nickName
+        }
+        tvMainBio.text = (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
+            accountManager?.bio
+        }
+        tvLocation2.text = (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
+            accountManager?.location
         }
 
     }

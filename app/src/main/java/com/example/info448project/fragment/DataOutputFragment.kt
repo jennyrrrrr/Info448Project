@@ -24,7 +24,7 @@ class  DataOutputFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.setTitle("COVID STATS")
+        activity?.setTitle("COVID Stats")
 
         val stateCardFragment = StateCardFragment()
 
