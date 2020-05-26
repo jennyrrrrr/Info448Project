@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.example.info448project.ProjectApplication
+import com.example.info448project.ProjectApp
 import com.example.info448project.R
-import kotlinx.android.synthetic.main.log_in.*
 import kotlinx.android.synthetic.main.profile_page.*
 
 class ProfileFragment: Fragment() {
@@ -42,10 +41,10 @@ class ProfileFragment: Fragment() {
                 .addToBackStack(EditProfileFragment.TAG)
                 .commit()
         }
-//        val username = etUsername.text.toString()
-//        (context?.applicationContext as? ProjectApplication)?.userManager.let { userManager ->
-//            userManager?.changeUsername(username)
-//        }
+
+        tvNickname.text = (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
+            accountManager?.nickName
+        }
 
     }
 

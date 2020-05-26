@@ -3,7 +3,7 @@ package com.example.info448project.manager
 import android.content.Context
 import android.util.Log
 
-class UserManager(context: Context) {
+class AccountManager(context: Context) {
     var nickName: String? = null
     var location: String? = null
     var bio: String? = null

@@ -1,8 +1,10 @@
 package com.example.info448project.activity
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.example.info448project.fragment.ProfileFragment
 import com.example.info448project.R
 import kotlinx.android.synthetic.main.activity_main.*

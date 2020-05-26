@@ -3,9 +3,7 @@ package com.example.info448project.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.info448project.ProjectApplication
 import com.example.info448project.R
-import kotlinx.android.synthetic.main.log_in.*
 import kotlinx.android.synthetic.main.sign_up.*
 
 class CreateAccountActivity: AppCompatActivity() {
