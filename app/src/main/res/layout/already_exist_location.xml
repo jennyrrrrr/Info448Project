@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/md15dp">
+
+    <Button
+        android:id="@+id/txLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#F2F2F2"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/select_a_location"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txChoose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txLocation"
+        app:layout_constraintLeft_toRightOf="@id/txLocation"
+        app:layout_constraintTop_toTopOf="@+id/txLocation" />
+
+    <TextView
+        android:id="@+id/tvIntroduction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/here_is_covid_19_data_in_the_state_of_washington"
+        app:layout_constraintTop_toBottomOf="@id/txLocation"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvCdc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/the_data_below_is_provided_by_cdc"
+        app:layout_constraintTop_toBottomOf="@id/tvIntroduction"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <TableLayout
+        android:id="@+id/tb1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvCdc"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <TableRow
+            android:weightSum="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="0.25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/positive"/>
+
+            <TextView
+                android:layout_weight="0.25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_0"/>
+
+
+            <TextView
+                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/negative" />
+
+            <TextView
+                android:layout_weight="0.25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_0"/>
+
+        </TableRow>
+
+        <TableRow
+            android:weightSum="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="0.25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/in_hospital"/>
+
+            <TextView
+                android:layout_weight="0.25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_0"/>
+
+
+            <TextView
+                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/death" />
+
+            <TextView
+                android:layout_weight="0.25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_0"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:layout_marginTop="@dimen/md15dp"
+        android:id="@+id/tvCompare"
+        android:layout_width="wrap_content"
+        android:text="@string/compare_with_yesterday"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tb1"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TableLayout
+        android:id="@+id/tv2"
+        android:layout_marginTop="@dimen/md15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvCompare"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+    <TableRow
+        android:weightSum="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="0.25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_positive"/>
+
+        <TextView
+            android:layout_weight="0.25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_0"/>
+
+
+        <TextView
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/new_death" />
+
+        <TextView
+            android:layout_weight="0.25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_0"/>
+
+    </TableRow>
+</TableLayout>
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
