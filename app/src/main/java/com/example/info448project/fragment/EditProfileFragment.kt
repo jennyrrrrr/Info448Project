@@ -10,9 +10,8 @@ import androidx.fragment.app.FragmentManager
 import com.example.info448project.ProjectApp
 import com.example.info448project.R
 import com.example.info448project.activity.LoginActivity
-import com.example.info448project.manager.AccountManager
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.edit_profile.*
-import kotlinx.android.synthetic.main.log_in.*
 
 class EditProfileFragment: Fragment() {
 
@@ -32,11 +31,12 @@ class EditProfileFragment: Fragment() {
         super.onCreate(savedInstanceState)
         activity?.setTitle("Edit Profile")
 
-        etName.setText((context?.applicationContext as? ProjectApp)?.accountManager?.nickName)
+        etName.setText((context?.applicationContext as? ProjectApp)?.accountManager?.userNickname)
         etBio.setText((context?.applicationContext as? ProjectApp)?.accountManager?.bio)
         etLocation.setText((context?.applicationContext as? ProjectApp)?.accountManager?.location)
 
         btnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
         }
@@ -46,7 +46,7 @@ class EditProfileFragment: Fragment() {
             fragmentManager.popBackStack()
 
             (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
-                accountManager?.changeUsername(etName.text.toString())
+                accountManager?.changeNickname(etName.text.toString())
             }
             (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
                 accountManager?.changeBio(etBio.text.toString())

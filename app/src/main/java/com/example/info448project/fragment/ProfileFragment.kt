@@ -44,7 +44,10 @@ class ProfileFragment: Fragment() {
         }
 
         tvNickname.text = (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
-            accountManager?.nickName
+            accountManager?.userNickname
+        }
+        tvMainUsername.text = (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
+            accountManager?.userName
         }
         tvMainBio.text = (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
             accountManager?.bio
@@ -52,7 +55,11 @@ class ProfileFragment: Fragment() {
         tvLocation2.text = (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
             accountManager?.location
         }
-
+        if (tvLocation2.text === "") {
+            ivLocation.visibility = View.GONE
+        } else {
+            ivLocation.visibility = View.VISIBLE
+        }
     }
 
 }

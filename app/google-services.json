@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "971433508885",
+    "firebase_url": "https://covidsupportapp.firebaseio.com",
+    "project_id": "covidsupportapp",
+    "storage_bucket": "covidsupportapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971433508885:android:eb1be040478f85dd5e0e1c",
+        "android_client_info": {
+          "package_name": "com.example.info448project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971433508885-3pvrb74p8lnhqc4lg96kh1b9os8j02k8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuA3hfeQQAYy4yqt6RSGdgtXp8pxeGMsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971433508885-3pvrb74p8lnhqc4lg96kh1b9os8j02k8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
