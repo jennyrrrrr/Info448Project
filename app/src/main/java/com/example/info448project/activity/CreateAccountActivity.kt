@@ -12,14 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.info448project.ProjectApp
 import com.example.info448project.R
 import com.example.info448project.manager.AccountManager
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.sign_up.*
 
 class CreateAccountActivity: AppCompatActivity() {
     private lateinit var accountManager: AccountManager
     private lateinit var auth: FirebaseAuth
-//    private lateinit var alertDialog: AlertDialog
 
     private fun hideKeypad(view: View) {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -30,9 +29,10 @@ class CreateAccountActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_up)
         title = getString(R.string.create_account)
+        progressBar.visibility = View.GONE
 
         accountManager = (application as ProjectApp).accountManager
-        auth = FirebaseAuth(FirebaseApp.getInstance())
+        auth = FirebaseAuth.getInstance()
 
 //        frameLayout.setOnClickListener { hideKeypad(frameLayout) }
         etPassword.setOnClickListener{ hideKeypad(etPassword) }
@@ -46,7 +46,12 @@ class CreateAccountActivity: AppCompatActivity() {
     private fun createUser() {
         val email = etEmail.text.toString().trim()
         val password = etPassword.text.toString().trim()
-//        alertDialog.setMessage("Creating User");
+        val nickname = etUserNickname.text.toString().trim()
+        val location = etLocation.text.toString().trim()
+//        val db = Firebase.firestore
+        val db = FirebaseFirestore.getInstance()
+
+        progressBar.visibility = View.VISIBLE
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Username or Password can not be empty!", Toast.LENGTH_SHORT).show()
             return
@@ -59,7 +64,21 @@ class CreateAccountActivity: AppCompatActivity() {
                     val user = auth.currentUser
                     Log.i("jen", user.toString())
                     accountManager.changeUsername(user.toString().substringAfter("@"))
-//                    accountManager.changeUsername(email.substring(0,8))
+                    val userInfo = hashMapOf(
+                        "nickname" to nickname,
+                        "email" to email,
+                        "location" to location,
+                        "bio" to ""
+                    )
+                    db.collection("users")
+                        .add(userInfo)
+                        .addOnSuccessListener { documentReference ->
+                            Toast.makeText(this, "Account Created!", Toast.LENGTH_SHORT).show()
+                            Log.d("jen", "DocumentSnapshot added with ID: ${documentReference.id}")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w("jen", "Error adding document", e)
+                        }
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 } else {

@@ -69,7 +69,7 @@
         android:id="@+id/tvCreateAccount2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have an account yet? Create account"
+        android:text="New here? Create account"
         android:textSize="12sp"
         android:layout_marginTop="15dp"
         android:textColor="#fff"

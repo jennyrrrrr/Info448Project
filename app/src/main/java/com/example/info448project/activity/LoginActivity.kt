@@ -53,16 +53,13 @@ class LoginActivity: AppCompatActivity() {
                     if (task.isSuccessful) {
                         Log.i("jen", "signInWithEmail:success")
                         Toast.makeText(baseContext, "Authentication success.", Toast.LENGTH_SHORT).show()
-//                        accountManager.changeUsername(email.substring(0,8))
                         val user = auth.currentUser
                         accountManager.changeUsername("@ ${user.toString().substringAfter("@")}")
-//                           updateUI(user)
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                     } else {
                         Log.i("jen", "signInWithEmail:failure", task.exception)
                         Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
-//                           updateUI(null)
                     }
                 }
             }
