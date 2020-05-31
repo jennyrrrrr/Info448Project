@@ -19,11 +19,7 @@ import kotlinx.android.synthetic.main.sign_up.*
 class CreateAccountActivity: AppCompatActivity() {
     private lateinit var accountManager: AccountManager
     private lateinit var auth: FirebaseAuth
-
-    private fun hideKeypad(view: View) {
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
-    }
+    private lateinit var userId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +30,6 @@ class CreateAccountActivity: AppCompatActivity() {
         accountManager = (application as ProjectApp).accountManager
         auth = FirebaseAuth.getInstance()
 
-//        frameLayout.setOnClickListener { hideKeypad(frameLayout) }
-        etPassword.setOnClickListener{ hideKeypad(etPassword) }
         btnCreateAccount.setOnClickListener { createUser() }
         tvLogin1.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
@@ -46,9 +40,8 @@ class CreateAccountActivity: AppCompatActivity() {
     private fun createUser() {
         val email = etEmail.text.toString().trim()
         val password = etPassword.text.toString().trim()
-        val nickname = etUserNickname.text.toString().trim()
+        val nickname = etUserNickname.text.toString()
         val location = etLocation.text.toString().trim()
-//        val db = Firebase.firestore
         val db = FirebaseFirestore.getInstance()
 
         progressBar.visibility = View.VISIBLE
@@ -70,21 +63,31 @@ class CreateAccountActivity: AppCompatActivity() {
                         "location" to location,
                         "bio" to ""
                     )
-                    db.collection("users")
-                        .add(userInfo)
-                        .addOnSuccessListener { documentReference ->
+                    userId = auth.currentUser!!.uid
+                    db.collection("users").document(userId)
+                        .set(userInfo)
+                        .addOnSuccessListener {
                             Toast.makeText(this, "Account Created!", Toast.LENGTH_SHORT).show()
-                            Log.d("jen", "DocumentSnapshot added with ID: ${documentReference.id}")
+                            Log.d("jen", "DocumentSnapshot added with ID: $userId")
+//                            val intent = Intent(this, MainActivity::class.java)
+//                            startActivity(intent)
                         }
                         .addOnFailureListener { e ->
                             Log.w("jen", "Error adding document", e)
                         }
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    progressBar.visibility = View.GONE
                 } else {
                     Log.i("jen", "createUserWithEmail:failure", task.exception)
                     Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                    progressBar.visibility = View.GONE
                 }
             }
+    }
+
+    private fun hideKeypad(view: View) {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -18,19 +19,17 @@ import kotlinx.android.synthetic.main.log_in.*
 
 class LoginActivity: AppCompatActivity() {
     private lateinit var accountManager: AccountManager
-    private lateinit var progressBar: ProgressBar
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.log_in)
         title = getString(R.string.log_in)
-        progressBar = ProgressBar(this);
+        progressBarLogin.visibility = View.GONE
 
         accountManager = (application as ProjectApp).accountManager
         auth = FirebaseAuth(FirebaseApp.getInstance())
 
-//        etUsername.setOnClickListener { closeKeyboard() }
         btnLogin2.setOnClickListener { loginUser() }
         tvCreateAccount2.setOnClickListener {
             val intent = Intent(this, CreateAccountActivity::class.java)
@@ -44,6 +43,7 @@ class LoginActivity: AppCompatActivity() {
     private fun loginUser() {
         val email = etUsername.text.toString().trim()
         val password = etPassword2.text.toString().trim()
+        progressBarLogin.visibility = View.VISIBLE
 
         if (TextUtils.isEmpty(etUsername.text) || TextUtils.isEmpty(etPassword2.text)) {
             Toast.makeText(this, "Username or Password can not be empty!", Toast.LENGTH_SHORT).show()
@@ -57,9 +57,11 @@ class LoginActivity: AppCompatActivity() {
                         accountManager.changeUsername("@ ${user.toString().substringAfter("@")}")
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
+                        progressBarLogin.visibility = View.GONE
                     } else {
                         Log.i("jen", "signInWithEmail:failure", task.exception)
                         Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                        progressBarLogin.visibility = View.GONE
                     }
                 }
             }
