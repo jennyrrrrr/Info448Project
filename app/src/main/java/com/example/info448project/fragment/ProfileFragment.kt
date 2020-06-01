@@ -5,18 +5,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.info448project.ProjectApp
 import com.example.info448project.R
+import com.example.info448project.manager.AccountManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.edit_profile.*
 import kotlinx.android.synthetic.main.profile_page.*
 
 class ProfileFragment: Fragment() {
     private lateinit var userId: String
     private lateinit var auth: FirebaseAuth
+    private lateinit var firebaseFirestore: FirebaseFirestore
+    private lateinit var accountManager: AccountManager
 
     companion object {
         val TAG: String = ProfileFragment::class.java.simpleName
@@ -36,47 +39,19 @@ class ProfileFragment: Fragment() {
 
         auth = FirebaseAuth.getInstance()
         userId = auth.currentUser!!.uid
-        val db = FirebaseFirestore.getInstance()
-        val docRef = db.collection("users").document(userId)
-        docRef.addSnapshotListener { snapshot, e ->
-            if (e != null) {
-                Log.w(TAG, "Listen failed.", e)
-                return@addSnapshotListener
-            }
+        firebaseFirestore = FirebaseFirestore.getInstance()
+        accountManager = (context?.applicationContext as ProjectApp).accountManager
 
-            if (snapshot != null && snapshot.exists()) {
-                Log.d(TAG, "Current data: ${snapshot.data}")
-                tvNickname.text = snapshot.getString("nickname")
-                tvMainUsername.text = snapshot.getString("email")
-                tvMainBio.text = snapshot.getString("bio")
-                tvLocation2.text = snapshot.getString("location")
-            } else {
-                Log.d(TAG, "Current data: null")
-            }
-        }
+//        accountManager.getUserInfo()
 
-        btnEdit.setOnClickListener {
-            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+        tvNickname.text = accountManager.nickname
+        Toast.makeText(context, "${accountManager.nickname}", Toast.LENGTH_SHORT).show()
+        tvMainUsername.text = accountManager.email
+        tvMainBio.text = accountManager.bio
+        tvLocation2.text = accountManager.location
 
-            fragmentManager
-                .beginTransaction()
-                .add(R.id.fragContainer, EditProfileFragment(), EditProfileFragment.TAG)
-                .addToBackStack(EditProfileFragment.TAG)
-                .commit()
-        }
+        btnEdit.setOnClickListener {showEditProfileFragment() }
 
-        tvNickname.text = (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
-            accountManager?.userNickname
-        }
-        tvMainUsername.text = (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
-            accountManager?.userName
-        }
-        tvMainBio.text = (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
-            accountManager?.bio
-        }
-        tvLocation2.text = (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
-            accountManager?.location
-        }
         if (tvLocation2.text === "") {
             ivLocation.visibility = View.GONE
         } else {
@@ -84,5 +59,13 @@ class ProfileFragment: Fragment() {
         }
     }
 
+    private fun showEditProfileFragment() {
+        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
 
+        fragmentManager
+            .beginTransaction()
+            .add(R.id.fragContainer, EditProfileFragment(), EditProfileFragment.TAG)
+            .addToBackStack(EditProfileFragment.TAG)
+            .commit()
+    }
 }

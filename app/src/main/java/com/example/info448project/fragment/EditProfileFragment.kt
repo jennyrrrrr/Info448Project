@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.info448project.ProjectApp
 import com.example.info448project.R
 import com.example.info448project.activity.LoginActivity
+import com.example.info448project.manager.AccountManager
 import com.example.info448project.model.UserInfo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -22,11 +23,11 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.app
 import kotlinx.android.synthetic.main.edit_profile.*
 
-
 class EditProfileFragment: Fragment() {
     private lateinit var database: DatabaseReference
     private lateinit var userId: String
     private lateinit var auth: FirebaseAuth
+    private lateinit var accountManager: AccountManager
 
     companion object {
         val TAG: String = EditProfileFragment::class.java.simpleName
@@ -45,10 +46,11 @@ class EditProfileFragment: Fragment() {
         activity?.title = "Edit Profile"
 
         database = FirebaseDatabase.getInstance().reference
+        accountManager = (context?.applicationContext as ProjectApp).accountManager
 
-        etName.setText((context?.applicationContext as? ProjectApp)?.accountManager?.userNickname)
-        etBio.setText((context?.applicationContext as? ProjectApp)?.accountManager?.bio)
-        etLocation.setText((context?.applicationContext as? ProjectApp)?.accountManager?.location)
+        etName.setText(accountManager.nickname)
+        etBio.setText(accountManager.bio)
+        etLocation.setText(accountManager.location)
 
         btnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
@@ -63,21 +65,10 @@ class EditProfileFragment: Fragment() {
             auth = FirebaseAuth.getInstance()
             userId = auth.currentUser!!.uid
             val nickname = etName.text.toString()
-            val email = "q@qq.qqq"
             val bio = etBio.text.toString()
             val location = etLocation.text.toString()
 
             database.child("users").child("$userId").child("nickname").setValue("$nickname");
-
-//            (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
-//                accountManager?.changeNickname(etName.text.toString())
-//            }
-//            (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
-//                accountManager?.changeBio(etBio.text.toString())
-//            }
-//            (context?.applicationContext as? ProjectApp)?.accountManager.let { accountManager ->
-//                accountManager?.changeLocation(etLocation.text.toString())
-//            }
         }
     }
 }

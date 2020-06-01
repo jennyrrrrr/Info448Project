@@ -7,7 +7,6 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.info448project.ProjectApp
@@ -18,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.log_in.*
 
 class LoginActivity: AppCompatActivity() {
-    private lateinit var accountManager: AccountManager
+//    private lateinit var accountManager: AccountManager
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,13 +26,11 @@ class LoginActivity: AppCompatActivity() {
         title = getString(R.string.log_in)
         progressBarLogin.visibility = View.GONE
 
-        accountManager = (application as ProjectApp).accountManager
         auth = FirebaseAuth(FirebaseApp.getInstance())
 
-        btnLogin2.setOnClickListener { loginUser() }
-        tvCreateAccount2.setOnClickListener {
-            val intent = Intent(this, CreateAccountActivity::class.java)
-            startActivity(intent)
+        btnLoginLogin.setOnClickListener { loginUser() }
+        tvCreateAccountLogin.setOnClickListener {
+            startActivity(Intent(this, CreateAccountActivity::class.java))
         }
         tvForgotPassword.setOnClickListener {
             Toast.makeText(this, "Chance only comes once, you have to memorize your password!", Toast.LENGTH_SHORT).show()
@@ -41,37 +38,27 @@ class LoginActivity: AppCompatActivity() {
     }
 
     private fun loginUser() {
-        val email = etUsername.text.toString().trim()
-        val password = etPassword2.text.toString().trim()
+        val email = etEmailLogin.text.toString().trim()
+        val password = etPasswordLogin.text.toString().trim()
+
         progressBarLogin.visibility = View.VISIBLE
 
-        if (TextUtils.isEmpty(etUsername.text) || TextUtils.isEmpty(etPassword2.text)) {
+        if (TextUtils.isEmpty(etEmailLogin.text) || TextUtils.isEmpty(etPasswordLogin.text)) {
             Toast.makeText(this, "Username or Password can not be empty!", Toast.LENGTH_SHORT).show()
         } else {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        Log.i("jen", "signInWithEmail:success")
+                        Log.i("jen", "loginWithEmail:success", task.exception)
                         Toast.makeText(baseContext, "Authentication success.", Toast.LENGTH_SHORT).show()
-                        val user = auth.currentUser
-                        accountManager.changeUsername("@ ${user.toString().substringAfter("@")}")
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
-                        progressBarLogin.visibility = View.GONE
                     } else {
-                        Log.i("jen", "signInWithEmail:failure", task.exception)
+                        Log.i("jen", "loginWithEmail:failure", task.exception)
                         Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                        progressBarLogin.visibility = View.GONE
                     }
+                    progressBarLogin.visibility = View.GONE
                 }
             }
-    }
-
-    private fun closeKeyboard() {
-        val view = this.currentFocus
-        if (view != null) {
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
-        }
     }
 }

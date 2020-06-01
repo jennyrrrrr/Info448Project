@@ -6,13 +6,16 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.FragmentManager
+import com.example.info448project.ProjectApp
 import com.example.info448project.fragment.ProfileFragment
 import com.example.info448project.R
 import com.example.info448project.fragment.DataOutputFragment
 import com.example.info448project.fragment.StateCardFragment
+import com.example.info448project.manager.AccountManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(){
+    private lateinit var accountManager: AccountManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,12 +33,15 @@ class MainActivity : AppCompatActivity(){
             }
         }
 
+        accountManager = (this.applicationContext as ProjectApp).accountManager
+        accountManager.getUserInfo()
         showData()
         btnProfile.setOnClickListener { showProfile() }
         btnData.setOnClickListener { showData() }
     }
 
-    private fun getDataOutputFragment() = supportFragmentManager.findFragmentByTag(DataOutputFragment.TAG) as? DataOutputFragment
+    private fun getDataOutputFragment() =
+        supportFragmentManager.findFragmentByTag(DataOutputFragment.TAG) as? DataOutputFragment
 
     // enable data fragment here
     private fun showData() {

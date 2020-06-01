@@ -9,6 +9,6 @@ class ProjectApp: Application() {
     override fun onCreate() {
         super.onCreate()
 
-        accountManager = AccountManager(this)
+        accountManager = AccountManager()
     }
 }

@@ -14,26 +14,24 @@ import com.example.info448project.R
 import com.example.info448project.manager.AccountManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.sign_up.*
+import kotlinx.android.synthetic.main.create_account.*
 
 class CreateAccountActivity: AppCompatActivity() {
-    private lateinit var accountManager: AccountManager
     private lateinit var auth: FirebaseAuth
     private lateinit var userId: String
+    private lateinit var firebaseFirestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.sign_up)
+        setContentView(R.layout.create_account)
         title = getString(R.string.create_account)
         progressBar.visibility = View.GONE
 
-        accountManager = (application as ProjectApp).accountManager
         auth = FirebaseAuth.getInstance()
 
         btnCreateAccount.setOnClickListener { createUser() }
         tvLogin1.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 
@@ -42,52 +40,42 @@ class CreateAccountActivity: AppCompatActivity() {
         val password = etPassword.text.toString().trim()
         val nickname = etUserNickname.text.toString()
         val location = etLocation.text.toString().trim()
-        val db = FirebaseFirestore.getInstance()
+        firebaseFirestore = FirebaseFirestore.getInstance()
 
         progressBar.visibility = View.VISIBLE
+
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Username or Password can not be empty!", Toast.LENGTH_SHORT).show()
-            return
-        }
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Log.i("jen", "createUserWithEmail:success", task.exception)
-                    Toast.makeText(this, "Authentication success.", Toast.LENGTH_SHORT).show()
-                    val user = auth.currentUser
-                    Log.i("jen", user.toString())
-                    accountManager.changeUsername(user.toString().substringAfter("@"))
-                    val userInfo = hashMapOf(
-                        "nickname" to nickname,
-                        "email" to email,
-                        "location" to location,
-                        "bio" to ""
-                    )
-                    userId = auth.currentUser!!.uid
-                    db.collection("users").document(userId)
-                        .set(userInfo)
-                        .addOnSuccessListener {
-                            Toast.makeText(this, "Account Created!", Toast.LENGTH_SHORT).show()
-                            Log.d("jen", "DocumentSnapshot added with ID: $userId")
-//                            val intent = Intent(this, MainActivity::class.java)
-//                            startActivity(intent)
-                        }
-                        .addOnFailureListener { e ->
-                            Log.w("jen", "Error adding document", e)
-                        }
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    progressBar.visibility = View.GONE
-                } else {
-                    Log.i("jen", "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Fields can not be empty!", Toast.LENGTH_SHORT).show()
+        } else {
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        Log.i("jen", "createUserWithEmail:success", task.exception)
+                        Toast.makeText(this, "Authentication success.", Toast.LENGTH_SHORT).show()
+                        val userInfo = hashMapOf(
+                            "nickname" to nickname,
+                            "email" to email,
+                            "location" to location,
+                            "bio" to ""
+                        )
+                        userId = auth.currentUser!!.uid
+                        firebaseFirestore.collection("users").document(userId)
+                            .set(userInfo)
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "Account Created!", Toast.LENGTH_SHORT).show()
+                                Log.d("jen", "DocumentSnapshot added with ID: $userId")
+                                val intent = Intent(this, MainActivity::class.java)
+                                startActivity(intent)
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w("jen", "Error adding document", e)
+                            }
+                    } else {
+                        Log.i("jen", "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                    }
                     progressBar.visibility = View.GONE
                 }
-            }
-    }
-
-    private fun hideKeypad(view: View) {
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 }
