@@ -22,16 +22,15 @@
         <activity android:name=".activity.LoginActivity">
         </activity>
         <activity android:name=".activity.OnBoardingActivity">
-
-        </activity>
-        <activity android:name=".activity.CreateAccountActivity">
-        </activity>
-        <activity android:name=".activity.LocationPickerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.CreateAccountActivity">
+        </activity>
+        <activity android:name=".activity.LocationPickerActivity">
         </activity>
     </application>
 
