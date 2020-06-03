@@ -37,4 +37,24 @@ class AccountManager() {
             }
         }
     }
+
+    fun setUserLocation(newLocation: String) {
+        this.location = newLocation
+        firebaseFirestore = FirebaseFirestore.getInstance()
+        auth = FirebaseAuth.getInstance()
+        userId = auth.currentUser!!.uid
+        val userInfo = hashMapOf(
+            "nickname" to this.nickname,
+            "email" to this.email,
+            "location" to this.location,
+            "bio" to this.bio
+        )
+        val docRef = firebaseFirestore.collection("users").document(userId).update(userInfo as Map<String, Any>)
+            .addOnSuccessListener {
+                Log.d("jen", "User with ID: $userId set location to $location")
+            }
+            .addOnFailureListener { e ->
+                Log.w("jen", "Error updating user: $userId  with the location: $location", e)
+            }
+    }
 }

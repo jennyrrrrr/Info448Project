@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
+import com.example.info448project.ProjectApp
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.api.geocoding.v5.GeocodingCriteria
@@ -22,6 +23,7 @@ import com.mapbox.api.geocoding.v5.models.GeocodingResponse
 import com.mapbox.core.exceptions.ServicesException
 import com.mapbox.geojson.Point
 import com.example.info448project.R
+import com.example.info448project.manager.AccountManager
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.modes.CameraMode
@@ -49,6 +51,7 @@ class LocationPickerActivity : AppCompatActivity(), PermissionsListener,
     private var permissionsManager: PermissionsManager? = null
     private var hoveringMarker: ImageView? = null
     private var droppedMarkerLayer: Layer? = null
+    private lateinit var accountManager: AccountManager
 
     companion object {
         private const val DROPPED_MARKER_LAYER_ID = "DROPPED_MARKER_LAYER_ID"
@@ -56,6 +59,7 @@ class LocationPickerActivity : AppCompatActivity(), PermissionsListener,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        accountManager = (this.applicationContext as ProjectApp).accountManager
         // Mapbox access token is configured here
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         // This needs to be called after the access token is configured.
@@ -264,6 +268,7 @@ class LocationPickerActivity : AppCompatActivity(), PermissionsListener,
                                             feature.placeName()
                                         ), Toast.LENGTH_SHORT
                                     ).show()
+                                    feature.placeName()?.let { accountManager.setUserLocation(it) }
                                 }
                             }
                         } else {
