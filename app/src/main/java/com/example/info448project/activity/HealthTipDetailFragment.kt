@@ -10,17 +10,8 @@ import com.example.info448project.activity.dummy.DummyContent
 import kotlinx.android.synthetic.main.activity_healthtip_detail.*
 import kotlinx.android.synthetic.main.healthtip_detail.view.*
 
-/**
- * A fragment representing a single HealthTip detail screen.
- * This fragment is either contained in a [HealthTipListActivity]
- * in two-pane mode (on tablets) or a [HealthTipDetailActivity]
- * on handsets.
- */
 class HealthTipDetailFragment : Fragment() {
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
     private var item: DummyContent.DummyItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +20,7 @@ class HealthTipDetailFragment : Fragment() {
         arguments?.let {
             if (it.containsKey(ARG_ITEM_ID)) {
                 // Load the dummy content specified by the fragment
-                // arguments. In a real-world scenario, use a Loader
-                // to load content from a content provider.
+                // arguments.
                 item = DummyContent.ITEM_MAP[it.getString(ARG_ITEM_ID)]
                 activity?.toolbar_layout?.title = " "
                 item?.background?.let { it1 -> activity?.toolbar_layout?.setBackgroundResource(it1) }
@@ -44,7 +34,6 @@ class HealthTipDetailFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.healthtip_detail, container, false)
 
-        // Show the dummy content as text in a TextView.
         item?.let {
             rootView.healthtip_detail.text = it.details
             rootView.healthtip_maintext.text = it.description

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,14 +16,6 @@ import kotlinx.android.synthetic.main.activity_healthtip_list.*
 import kotlinx.android.synthetic.main.healthtip_list_content.view.*
 import kotlinx.android.synthetic.main.healthtip_list.*
 
-/**
- * An activity representing a list of Pings. This activity
- * has different presentations for handset and tablet-size devices. On
- * handsets, the activity presents a list of items, which when touched,
- * lead to a [HealthTipDetailActivity] representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
- */
 class HealthTipListActivity : AppCompatActivity() {
 
     /**
