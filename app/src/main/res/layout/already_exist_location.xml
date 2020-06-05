@@ -62,19 +62,21 @@
                 android:text="@string/positive"/>
 
             <TextView
-                android:layout_weight="0.25"
+                android:id="@+id/tvPositive"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/_0"/>
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:text="@string/_0" />
 
 
             <TextView
                 android:layout_weight="0.25"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="@string/negative" />
+                android:text="@string/recovered" />
 
             <TextView
+                android:id="@+id/tvRecovered"
                 android:layout_weight="0.25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -94,6 +96,7 @@
                 android:text="@string/in_hospital"/>
 
             <TextView
+                android:id="@+id/tvHospitalized"
                 android:layout_weight="0.25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,6 +110,7 @@
                 android:text="@string/death" />
 
             <TextView
+                android:id="@+id/tvDeath"
                 android:layout_weight="0.25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -145,6 +149,7 @@
             android:text="@string/new_positive"/>
 
         <TextView
+            android:id="@+id/tvNewPositive"
             android:layout_weight="0.25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -158,6 +163,7 @@
             android:text="@string/new_death" />
 
         <TextView
+            android:id="@+id/tvNewDeath"
             android:layout_weight="0.25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
