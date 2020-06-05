@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity(){
         showData()
         btnProfile.setOnClickListener { showProfile() }
         btnData.setOnClickListener { showData() }
+        btnForum.setOnClickListener{ showForum() }
     }
 
     private fun getDataOutputFragment() =
@@ -64,6 +65,18 @@ class MainActivity : AppCompatActivity(){
             .beginTransaction()
             .add(R.id.fragContainer, profileFragment, ProfileFragment.TAG)
             .addToBackStack(ProfileFragment.TAG)
+            .commit()
+    }
+
+    // enable Forum fragment here
+    private fun showForum() {
+        supportFragmentManager.popBackStack()
+
+        val forumFragment = ForumFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragContainer, forumFragment, ForumFragment.TAG)
+            .addToBackStack(ForumFragment.TAG)
             .commit()
     }
 
