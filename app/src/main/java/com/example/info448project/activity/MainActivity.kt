@@ -2,16 +2,27 @@ package com.example.info448project.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+<<<<<<< HEAD
+=======
+import android.widget.Toast
+>>>>>>> 24e138ef45d61f4d602ddacbda5e72da7f37572e
 import com.example.info448project.ProjectApp
 import com.example.info448project.fragment.ProfileFragment
 import com.example.info448project.R
 import com.example.info448project.fragment.DataOutputFragment
+<<<<<<< HEAD
+=======
+import com.example.info448project.fragment.OnStateSelectListener
+>>>>>>> 24e138ef45d61f4d602ddacbda5e72da7f37572e
 import com.example.info448project.manager.AccountManager
+import com.example.info448project.manager.DataManager
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity(), OnStateSelectListener {
     private lateinit var accountManager: AccountManager
+    private lateinit var dataManager: DataManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +54,26 @@ class MainActivity : AppCompatActivity(){
     private fun showData() {
         supportFragmentManager.popBackStack()
 
-        val dataOutputFragment = DataOutputFragment();
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
-            .addToBackStack(DataOutputFragment.TAG)
-            .commit()
+        val argumentBundle = Bundle()
+        dataManager = (application as ProjectApp).dataManager
+        dataManager.getCountry() {
+            if (it.equals(null)) {
+                Toast.makeText(this, "problem occurred", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Loading Data", Toast.LENGTH_LONG).show()
+            }
+            val input = ArrayList(it)
+            argumentBundle.putParcelableArrayList(DataOutputFragment.COUNTRY_INFO, input)
+
+            val dataOutputFragment = DataOutputFragment();
+            dataOutputFragment.arguments = argumentBundle
+
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
+                .addToBackStack(DataOutputFragment.TAG)
+                .commit()
+        }
     }
 
     // enable profile fragment here
@@ -66,6 +91,28 @@ class MainActivity : AppCompatActivity(){
     override fun onSupportNavigateUp(): Boolean {
         supportFragmentManager.popBackStack()
         return super.onSupportNavigateUp()
+    }
+
+    override fun onStateClick(state: String) {
+        val dataOutputFragment = DataOutputFragment();
+        val argumentBundle = Bundle()
+        dataManager = (application as ProjectApp).dataManager
+        dataManager.getOneState(state) {
+
+            if (it.equals(null)) {
+                Toast.makeText(this, "problem occurred", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Loading Data", Toast.LENGTH_LONG).show()
+            }
+            val input = ArrayList(it)
+            argumentBundle.putParcelableArrayList(DataOutputFragment.STATE_INFO, input)
+            dataOutputFragment.arguments = argumentBundle
+
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
+                .commit()
+        }
     }
 
 }

@@ -51,9 +51,9 @@ class LoginActivity: AppCompatActivity() {
                     } else {
                         Log.i("jen", "loginWithEmail:failure", task.exception)
                         Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                    }
+                     }
                     progressBarLogin.visibility = View.GONE
                 }
-            }
+        }
     }
 }
