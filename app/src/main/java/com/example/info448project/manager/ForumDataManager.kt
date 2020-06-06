@@ -8,15 +8,14 @@ import com.android.volley.toolbox.Volley
 import android.util.Log
 import com.example.info448project.AllPosts
 import com.example.info448project.Post
+import com.example.info448project.fragment.ForumFragment
 import com.google.gson.Gson
 
 class ForumDataManager(context: Context) {
     val queue = Volley.newRequestQueue(context)
 
     //Fetching the JSON from the internet
-    fun fetchPosts(): List<Post> {
-        var genPosts = listOf<Post>()
-
+    fun fetchPosts() {
         //Call the JSON from the api
         // Instantiate the RequestQueue.
         val url = "https://raw.githubusercontent.com/rongt2-1861545/Info448Project/jay_dev/sampleForumData/sampleForumPosts.json"
@@ -26,15 +25,16 @@ class ForumDataManager(context: Context) {
             Response.Listener<String> { response ->
                 // Display the first 500 characters of the response string.
                 Log.i("jhoupps", "Response is: ${response.substring(0, 500)}")
-                genPosts = parseData(response) //todo change this to be not just general chat
+                val genPosts = parseData(response) //todo change this to be not just general chat
 
+                val theMainFragment =
+                    ForumFragment()
+                theMainFragment.setUpRecyclerView(genPosts)
             },
             Response.ErrorListener { Log.i("jhoupps",  "That didn't work!") })
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest)
-        return genPosts
-
     }
 
 

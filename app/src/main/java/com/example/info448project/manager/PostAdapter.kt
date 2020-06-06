@@ -1,5 +1,6 @@
 package com.example.info448project.manager
 
+import android.util.Log
 import com.example.info448project.Post
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +13,12 @@ import com.example.info448project.R
 class PostAdapter(initialListOfPosts: List<Post>): RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
 
-    private var listOfPosts: List<Post> = initialListOfPosts.toList()  // This is so we create a duplicate of the list passed in
+    private var listOfPosts: List<Post> = initialListOfPosts.toList() // This is so we create a duplicate of the list passed in
+    private var dummy = "test"
    // var onPersonClickListener: ((person: Person) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
+        Log.i("jhoupps",  "A view holder was created!")
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
         return PostViewHolder(view)
     }

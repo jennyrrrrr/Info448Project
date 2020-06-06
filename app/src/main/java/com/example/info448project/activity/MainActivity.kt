@@ -1,16 +1,13 @@
 package com.example.info448project.activity
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.FragmentManager
 import com.example.info448project.ProjectApp
 import com.example.info448project.fragment.ProfileFragment
 import com.example.info448project.R
 import com.example.info448project.fragment.DataOutputFragment
-import com.example.info448project.fragment.StateCardFragment
+import com.example.info448project.fragment.ForumFragment
 import com.example.info448project.manager.AccountManager
 import kotlinx.android.synthetic.main.activity_main.*
 

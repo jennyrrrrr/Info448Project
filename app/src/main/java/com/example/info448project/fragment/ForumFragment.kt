@@ -1,11 +1,14 @@
-package com.example.info448project.activity
+package com.example.info448project.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.info448project.Comment
+import com.example.info448project.Post
 
 import com.example.info448project.R
 import com.example.info448project.manager.ForumDataManager
@@ -47,15 +50,25 @@ class ForumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val forumDataManager = ForumDataManager(requireActivity().applicationContext) //this should get me the context according to stack overflow
+        Log.i("jhoupps",  "about to fetch posts")
 
-        val generalListOfPosts = forumDataManager.fetchPosts()
+        forumDataManager.fetchPosts() //lets see if this goes asyncrhonously
 
-        val postAdapter = PostAdapter(generalListOfPosts)
+        val initialPost = Post(
+            posterName = "Mr Test",
+            posterUserName = "@testytest",
+            smallImageURL = "www.someplace",
+            dateTime = "1:45 5.13.15",
+            postContent = "I am posting a thing!",
+            comments = listOf<Comment>()
+        )
+        val blankListForNow = listOf<Post>(initialPost)
+
+        val postAdapter = PostAdapter(blankListForNow)
 
         rvForumPosts.adapter = postAdapter
-
+        Log.i("jhoupps",  "it was called!")
         //todo - on click show comments?
         /*
         // Set on item Click for the adapter
@@ -70,5 +83,15 @@ class ForumFragment : Fragment() {
             startActivity(intent)
             */
 
+    }
+
+
+    fun setUpRecyclerView(generalListOfPosts: List<Post>){
+        /*
+        val postAdapter = PostAdapter(generalListOfPosts)
+
+        rvForumPosts.adapter = postAdapter
+        Log.i("jhoupps",  "it was called!")
+*/
     }
 }
