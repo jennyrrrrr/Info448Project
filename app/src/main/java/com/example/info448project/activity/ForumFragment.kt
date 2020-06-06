@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.example.info448project.R
 import com.example.info448project.manager.ForumDataManager
 import com.example.info448project.manager.PostAdapter
+import kotlinx.android.synthetic.main.fragment_forum.*
 
 /* Documentation:
 Overall Fragment architecture - This fragment fetches data in JSON format,
@@ -51,8 +52,9 @@ class ForumFragment : Fragment() {
 
         val generalListOfPosts = forumDataManager.fetchPosts()
 
-        val postAdapter =
-            PostAdapter(generalListOfPosts)
+        val postAdapter = PostAdapter(generalListOfPosts)
+
+        rvForumPosts.adapter = postAdapter
 
         //todo - on click show comments?
         /*
