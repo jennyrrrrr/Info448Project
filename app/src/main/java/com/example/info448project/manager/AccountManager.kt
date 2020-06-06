@@ -1,6 +1,5 @@
 package com.example.info448project.manager
 
-import android.content.Context
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

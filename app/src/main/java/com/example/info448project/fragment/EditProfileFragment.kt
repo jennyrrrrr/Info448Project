@@ -28,6 +28,7 @@ class EditProfileFragment: Fragment() {
     private lateinit var userId: String
     private lateinit var auth: FirebaseAuth
     private lateinit var accountManager: AccountManager
+    private lateinit var firebaseFirestore: FirebaseFirestore
 
     companion object {
         val TAG: String = EditProfileFragment::class.java.simpleName
@@ -57,18 +58,29 @@ class EditProfileFragment: Fragment() {
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
         }
+        btnComplete.setOnClickListener { updateProfile() }
+    }
 
-        btnComplete.setOnClickListener {
-            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-            fragmentManager.popBackStack()
+    private fun updateProfile() {
+        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+        fragmentManager.popBackStack()
 
-            auth = FirebaseAuth.getInstance()
-            userId = auth.currentUser!!.uid
-            val nickname = etName.text.toString()
-            val bio = etBio.text.toString()
-            val location = etLocation.text.toString()
+        auth = FirebaseAuth.getInstance()
+        userId = auth.currentUser!!.uid
+        val nickname = etName.text.toString()
+        val bio = etBio.text.toString()
+        val location = etLocation.text.toString()
 
-            database.child("users").child("$userId").child("nickname").setValue("$nickname");
-        }
+        firebaseFirestore = FirebaseFirestore.getInstance()
+        val docRef = firebaseFirestore.collection("users").document(userId)
+
+        docRef
+            .update(mapOf(
+                "nickname" to nickname,
+                "bio" to bio,
+                "location" to location
+            ))
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
     }
 }

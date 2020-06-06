@@ -46,6 +46,8 @@ class CreateAccountActivity: AppCompatActivity() {
 
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Fields can not be empty!", Toast.LENGTH_SHORT).show()
+        } else if (password.length < 6) {
+            Toast.makeText(this, "Password must be longer than 6 characters!", Toast.LENGTH_SHORT).show()
         } else {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
