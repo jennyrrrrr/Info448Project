@@ -8,7 +8,19 @@ import android.view.ViewGroup
 
 import com.example.info448project.R
 
+/* Documentation:
+Overall Fragment architecture - This fragment fetches data in JSON format,
+then displays it in a recyclerview
 
+To do:
+- set up json
+- fetch json
+- store json in variable
+- set up one tab
+- display json in recyclerview
+- set up multiple tabs
+- set up ability to modify data
+ */
 class ForumFragment : Fragment() {
     companion object {
         val TAG: String = ForumFragment::class.java.simpleName
