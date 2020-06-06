@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity(){
         accountManager = (this.applicationContext as ProjectApp).accountManager
         accountManager.getUserInfo()
         showData()
+
         btnProfile.setOnClickListener { showProfile() }
         btnData.setOnClickListener { showData() }
         btnForum.setOnClickListener{ showForum() }

@@ -2,50 +2,57 @@
     "general":[
        {
           "posterName":"Janice Dolly",
+          "posterUserName":"@jdolly",
           "smallImageURL":"https://picsum.photos/seed/LinkinPark/50",
           "dateTime":"5:43 pm 6/5/2020",
-          "body":"Is anybody feeling lonely nowadays?",
+          "postContent":"Is anypostContent feeling lonely nowadays?",
           "comments":[
              {
                 "posterName":"Tammy White",
+                "posterUserName":"@tammyfosure",
                 "smallImageURL":"https://picsum.photos/seed/LinkinPark/50",
                 "dateTime":"5:43 pm 6/5/2020",
-                "body":"I know I am, I miss seeing my kids"
+                "postContent":"I know I am, I miss seeing my kids"
              },
              {
                 "posterName":"Johan McDouglas",
+                "posterUserName":"@McD",
                 "smallImageURL":"https://picsum.photos/seed/LinkinPark/50",
                 "dateTime":"5:43 pm 6/5/2020",
-                "body":"I dunno, I kinda like the quiet"
+                "postContent":"I dunno, I kinda like the quiet"
              },
              {
                 "posterName":"Mx. Rhonda",
+                "posterUserName":"@cats4lyfe",
                 "smallImageURL":"https://picsum.photos/seed/LinkinPark/50",
                 "dateTime":"5:43 pm 6/5/2020",
-                "body":"We should have a 6 feet apart picnic! It'll cheer you right up, come outside in a few hours"
+                "postContent":"We should have a 6 feet apart picnic! It'll cheer you right up, come outside in a few hours"
              }
           ]
        },
        {
           "posterName":"Bob Anderson",
+          "posterUserName":"@MisterAnderson",
           "smallImageURL":"https://picsum.photos/seed/LinkinPark/50",
           "dateTime":"6:43 pm 6/5/2020",
-          "body":"Is trumpet guy going to be playing this weekend?",
+          "postContent":"Is trumpet guy going to be playing this weekend?",
           "comments":[
  
           ]
        },
        {
           "posterName":"Tai Lee",
+          "posterUserName":"@rayOfSunshine",
           "smallImageURL":"https://picsum.photos/seed/LinkinPark/50",
           "dateTime":"3:43 pm 6/4/2020",
-          "body":"I made extra soup, does anybody want some?",
+          "postContent":"I made extra soup, does anypostContent want some?",
           "comments":[
              {
                 "posterName":"Janice Dolly",
+                "posterUserName":"@jdolly",
                 "smallImageURL":"https://picsum.photos/seed/LinkinPark/50",
                 "dateTime":"5:43 pm 6/5/2020",
-                "body":"Oh! Me please"
+                "postContent":"Oh! Me please"
              }
           ]
        }
