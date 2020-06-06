@@ -56,7 +56,9 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
             } else {
                 Toast.makeText(this, "Loading Data", Toast.LENGTH_LONG).show()
             }
-            argumentBundle.putParcelable(DataOutputFragment.COUNTRY_INFO, it)
+            val input = ArrayList(it)
+            argumentBundle.putParcelableArrayList(DataOutputFragment.COUNTRY_INFO, input)
+
             val dataOutputFragment = DataOutputFragment();
             dataOutputFragment.arguments = argumentBundle
 
@@ -96,7 +98,8 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
             } else {
                 Toast.makeText(this, "Loading Data", Toast.LENGTH_LONG).show()
             }
-            argumentBundle.putParcelable(DataOutputFragment.STATE_INFO, it)
+            val input = ArrayList(it)
+            argumentBundle.putParcelableArrayList(DataOutputFragment.STATE_INFO, input)
             dataOutputFragment.arguments = argumentBundle
 
             supportFragmentManager
