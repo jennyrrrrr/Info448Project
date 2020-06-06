@@ -60,6 +60,7 @@ class LocationPickerActivity : AppCompatActivity(), PermissionsListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         accountManager = (this.applicationContext as ProjectApp).accountManager
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         // Mapbox access token is configured here
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         // This needs to be called after the access token is configured.

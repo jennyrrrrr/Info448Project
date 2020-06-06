@@ -28,9 +28,11 @@
         android:id="@+id/healthtip_maintext"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="18dp"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"
         android:textSize="18dp"
         android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:text="Lorem ipusem this is a paragraph used for testing longer lengths and content that should span multiple rows and lines across the screen just for testing purposes ok."
         />
 </LinearLayout>

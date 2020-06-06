@@ -29,6 +29,7 @@ class HealthTipListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_healthtip_list)
 
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.title = title
 
         if (healthtip_detail_container != null) {
