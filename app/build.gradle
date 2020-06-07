@@ -24,6 +24,14 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
@@ -56,4 +64,13 @@ dependencies {
 
     // volley
     implementation 'com.android.volley:volley:1.1.1'
+
+    // philjay
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    // WORKMANAGER
+    implementation 'androidx.work:work-runtime-ktx:2.3.4'
+
+    //fix resolution issue
+    //implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
 }

@@ -3,7 +3,6 @@ package com.example.info448project.fragment
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,11 @@ import androidx.fragment.app.Fragment
 import com.example.info448project.R
 import com.example.info448project.model.CountryInfo
 import com.example.info448project.model.StateInfo
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 
 
 class  DataOutputFragment: Fragment() {
@@ -25,14 +29,18 @@ class  DataOutputFragment: Fragment() {
         const val COUNTRY_INFO = "country list"
     }
 
-    private var stateInfo: StateInfo? = null
-    private var countryInfo: CountryInfo? = null
+    private var stateInfo: ArrayList<StateInfo>? = null
+    private var countryInfo: ArrayList<CountryInfo>? = null
     lateinit var tvPositive: TextView
     lateinit var tvRecovered: TextView
     lateinit var tvHospitalized: TextView
     lateinit var tvDeath: TextView
     lateinit var tvNewPositive: TextView
     lateinit var tvNewDeath: TextView
+    lateinit var chart: LineChart
+    lateinit var tvIntroduction: TextView
+    lateinit var txChoose: TextView
+    private var entries: ArrayList<Entry> = arrayListOf()
 
     @SuppressLint("UseRequireInsteadOfGet")
     override fun onAttach(context: Context) {
@@ -40,11 +48,11 @@ class  DataOutputFragment: Fragment() {
         val bundle = arguments
 
         if (bundle?.containsKey(COUNTRY_INFO)!!) {
-            countryInfo = this.arguments?.getParcelable<CountryInfo>(COUNTRY_INFO)!!
-            Toast.makeText(context, countryInfo.toString(), Toast.LENGTH_LONG).show()
+            countryInfo = this.arguments?.getParcelableArrayList<CountryInfo>(COUNTRY_INFO)!!
+            //Toast.makeText(context, countryInfo.toString(), Toast.LENGTH_LONG).show()
         } else if (bundle.containsKey(STATE_INFO)) {
-            stateInfo = this.arguments?.getParcelable<StateInfo>(STATE_INFO)!!
-            Toast.makeText(context, stateInfo.toString(), Toast.LENGTH_LONG).show()
+            stateInfo = this.arguments?.getParcelableArrayList<StateInfo>(STATE_INFO)!!
+            //Toast.makeText(context, stateInfo.toString(), Toast.LENGTH_LONG).show()
         }
     }
 
@@ -57,6 +65,7 @@ class  DataOutputFragment: Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.setTitle("COVID Stats")
@@ -70,21 +79,66 @@ class  DataOutputFragment: Fragment() {
         tvDeath = view.findViewById(R.id.tvDeath)
         tvNewPositive = view.findViewById(R.id.tvNewPositive)
         tvNewDeath = view.findViewById(R.id.tvNewDeath)
+        tvIntroduction = view.findViewById(R.id.tvIntroduction)
+        txChoose = view.findViewById(R.id.txChoose)
 
         if (!(stateInfo == null)) {
-            tvPositive.text = stateInfo?.positive.toString()
-            tvRecovered.text = stateInfo?.recovered.toString()
-            tvHospitalized.text = stateInfo?.hospitalized.toString()
-            tvDeath.text = stateInfo?.death.toString()
-            tvNewPositive.text = stateInfo?.positiveIncrease.toString()
-            tvNewDeath.text = stateInfo?.deathIncrease.toString()
+            txChoose.text = "The Data Quality Grade in " + stateInfo?.first()?.state + " is " + stateInfo?.first()?.dataQualityGrade
+            tvIntroduction.text = "Here is Covid-19 Data in the state of " + stateInfo?.first()?.state
+            tvPositive.text = stateInfo?.first()?.positive.toString()
+            tvRecovered.text = stateInfo?.first()?.recovered.toString()
+            tvHospitalized.text = stateInfo?.first()?.hospitalized.toString()
+            tvDeath.text = stateInfo?.first()?.death.toString()
+            tvNewPositive.text = stateInfo?.first()?.positiveIncrease.toString()
+            tvNewDeath.text = stateInfo?.first()?.deathIncrease.toString()
+
+            // for graph
+            chart = view.findViewById(R.id.chart)
+
+            var num = 0
+
+            val reverse: MutableList<StateInfo> = stateInfo?.subList(0, 10)?.reversed()?.toMutableList()!!
+
+            for (item in reverse) {
+                val entry = Entry(num.toFloat(), item.positive.toFloat())
+                num++
+                entries.add(entry)
+            }
+
+            val dataSet = LineDataSet(entries, "Date")
+            dataSet.axisDependency = YAxis.AxisDependency.LEFT
+            val lineData = LineData(dataSet)
+            chart.setData(lineData)
+            chart.notifyDataSetChanged()
         } else {
-            tvPositive.text = countryInfo?.positive.toString()
-            tvRecovered.text = countryInfo?.recovered.toString()
-            tvHospitalized.text = countryInfo?.hospitalized.toString()
-            tvDeath.text = countryInfo?.death.toString()
-            tvNewPositive.text = countryInfo?.positiveIncrease.toString()
-            tvNewDeath.text = countryInfo?.deathIncrease.toString()
+            // for table
+            txChoose.text = ""
+            tvIntroduction.text = "Here is Covid-19 Data in the United States"
+            tvPositive.text = countryInfo?.first()?.positive.toString()
+            tvRecovered.text = countryInfo?.first()?.recovered.toString()
+            tvHospitalized.text = countryInfo?.first()?.hospitalized.toString()
+            tvDeath.text = countryInfo?.first()?.death.toString()
+            tvNewPositive.text = countryInfo?.first()?.positiveIncrease.toString()
+            tvNewDeath.text = countryInfo?.first()?.deathIncrease.toString()
+
+            // for graph
+            chart = view.findViewById(R.id.chart)
+
+            var num = 0
+
+            val reverse: MutableList<CountryInfo> = countryInfo?.reversed()?.toMutableList()!!
+
+            for (item in reverse) {
+                val entry = Entry(num.toFloat(), item.positive.toFloat())
+                num++
+                entries.add(entry)
+            }
+
+            val dataSet = LineDataSet(entries, "Date")
+            dataSet.axisDependency = YAxis.AxisDependency.LEFT
+            val lineData = LineData(dataSet)
+            chart.setData(lineData)
+            chart.invalidate()
         }
 
 

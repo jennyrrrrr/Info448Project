@@ -42,12 +42,15 @@ class ProfileFragment: Fragment() {
         firebaseFirestore = FirebaseFirestore.getInstance()
         accountManager = (context?.applicationContext as ProjectApp).accountManager
 
+//        accountManager.getUserInfo()
+
         tvNickname.text = accountManager.nickname
+        Toast.makeText(context, "${accountManager.nickname}", Toast.LENGTH_SHORT).show()
         tvMainUsername.text = accountManager.email
         tvMainBio.text = accountManager.bio
         tvLocation2.text = accountManager.location
 
-        btnEdit.setOnClickListener { showEditProfileFragment() }
+        btnEdit.setOnClickListener {showEditProfileFragment() }
 
         if (tvLocation2.text === "") {
             ivLocation.visibility = View.GONE
@@ -64,11 +67,5 @@ class ProfileFragment: Fragment() {
             .add(R.id.fragContainer, EditProfileFragment(), EditProfileFragment.TAG)
             .addToBackStack(EditProfileFragment.TAG)
             .commit()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        accountManager.getUserInfo()
-        Log.i("jen", accountManager.nickname)
     }
 }

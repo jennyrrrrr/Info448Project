@@ -2,27 +2,25 @@ package com.example.info448project.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
-<<<<<<< HEAD
-=======
 import android.widget.Toast
->>>>>>> 24e138ef45d61f4d602ddacbda5e72da7f37572e
 import com.example.info448project.ProjectApp
 import com.example.info448project.fragment.ProfileFragment
 import com.example.info448project.R
 import com.example.info448project.fragment.DataOutputFragment
-<<<<<<< HEAD
-=======
 import com.example.info448project.fragment.OnStateSelectListener
->>>>>>> 24e138ef45d61f4d602ddacbda5e72da7f37572e
 import com.example.info448project.manager.AccountManager
 import com.example.info448project.manager.DataManager
+import com.example.info448project.manager.WorkBackgroundManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnStateSelectListener {
     private lateinit var accountManager: AccountManager
     private lateinit var dataManager: DataManager
+    private lateinit var workBackgroundManager: WorkBackgroundManager
+    private var dataOutputFragment = DataOutputFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +40,18 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
 
         accountManager = (this.applicationContext as ProjectApp).accountManager
         accountManager.getUserInfo()
+        if (savedInstanceState != null) {
+
+            dataOutputFragment =
+                supportFragmentManager.getFragment(savedInstanceState, DataOutputFragment.TAG) as DataOutputFragment
+        }
         showData()
         btnProfile.setOnClickListener { showProfile() }
         btnData.setOnClickListener { showData() }
+
+        // enable my workmanager class
+        workBackgroundManager = (this.applicationContext as ProjectApp).workBackgroundManager
+        workBackgroundManager.startFetchForDaily()
     }
 
     private fun getDataOutputFragment() =
@@ -62,7 +69,9 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
             } else {
                 Toast.makeText(this, "Loading Data", Toast.LENGTH_LONG).show()
             }
-            argumentBundle.putParcelable(DataOutputFragment.COUNTRY_INFO, it)
+            val input = ArrayList(it)
+            argumentBundle.putParcelableArrayList(DataOutputFragment.COUNTRY_INFO, input)
+
             val dataOutputFragment = DataOutputFragment();
             dataOutputFragment.arguments = argumentBundle
 
@@ -102,7 +111,8 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
             } else {
                 Toast.makeText(this, "Loading Data", Toast.LENGTH_LONG).show()
             }
-            argumentBundle.putParcelable(DataOutputFragment.STATE_INFO, it)
+            val input = ArrayList(it)
+            argumentBundle.putParcelableArrayList(DataOutputFragment.STATE_INFO, input)
             dataOutputFragment.arguments = argumentBundle
 
             supportFragmentManager
@@ -112,4 +122,9 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+
+        supportFragmentManager.putFragment(outState, DataOutputFragment.TAG, dataOutputFragment)
+    }
 }
