@@ -11,9 +11,12 @@ import com.example.info448project.fragment.ProfileFragment
 import com.example.info448project.R
 import com.example.info448project.fragment.DataOutputFragment
 import com.example.info448project.fragment.OnStateSelectListener
+import com.example.info448project.fragment.StateCardFragment
 import com.example.info448project.manager.AccountManager
 import com.example.info448project.manager.DataManager
 import com.example.info448project.manager.WorkBackgroundManager
+import com.example.info448project.model.CountryInfo
+import com.example.info448project.model.StateInfo
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnStateSelectListener {
@@ -21,6 +24,8 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
     private lateinit var dataManager: DataManager
     private lateinit var workBackgroundManager: WorkBackgroundManager
     private var dataOutputFragment = DataOutputFragment()
+    private var stateInfo: ArrayList<StateInfo>? = null
+    private var countryInfo: ArrayList<CountryInfo>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,24 +67,55 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
         supportFragmentManager.popBackStack()
 
         val argumentBundle = Bundle()
-        dataManager = (application as ProjectApp).dataManager
-        dataManager.getCountry() {
-            if (it.equals(null)) {
-                Toast.makeText(this, "problem occurred", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Loading Data", Toast.LENGTH_LONG).show()
+        if (countryInfo == null) {
+            Toast.makeText(this, "I am here 2", Toast.LENGTH_SHORT).show()
+            Log.i("shengtianyi2", "I am here 2")
+            dataManager = (application as ProjectApp).dataManager
+            dataManager.getCountry() {
+                if (it.equals(null)) {
+                    Toast.makeText(this, "problem occurred", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "Loading Data", Toast.LENGTH_LONG).show()
+                }
+                val input = ArrayList(it)
+                countryInfo = input
+                argumentBundle.putParcelableArrayList(DataOutputFragment.COUNTRY_INFO, input)
+
+                val dataOutputFragment = DataOutputFragment();
+                dataOutputFragment.arguments = argumentBundle
+
+                supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
+                    .addToBackStack(DataOutputFragment.TAG)
+                    .commit()
             }
-            val input = ArrayList(it)
-            argumentBundle.putParcelableArrayList(DataOutputFragment.COUNTRY_INFO, input)
+        } else {
+            Toast.makeText(this, "I am here", Toast.LENGTH_SHORT).show()
+            Log.i("shengtianyi2", "I am here1")
+            if (stateInfo == null) {
+                argumentBundle.putParcelableArrayList(DataOutputFragment.COUNTRY_INFO, countryInfo)
 
-            val dataOutputFragment = DataOutputFragment();
-            dataOutputFragment.arguments = argumentBundle
+                val dataOutputFragment = DataOutputFragment();
+                dataOutputFragment.arguments = argumentBundle
 
-            supportFragmentManager
-                .beginTransaction()
-                .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
-                .addToBackStack(DataOutputFragment.TAG)
-                .commit()
+                supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
+                    .addToBackStack(DataOutputFragment.TAG)
+                    .commit()
+            } else {
+                argumentBundle.putParcelableArrayList(DataOutputFragment.STATE_INFO, stateInfo)
+
+                val dataOutputFragment = DataOutputFragment();
+                dataOutputFragment.arguments = argumentBundle
+
+                supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
+                    .addToBackStack(DataOutputFragment.TAG)
+                    .commit()
+            }
         }
     }
 
@@ -101,6 +137,8 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
     }
 
     override fun onStateClick(state: String) {
+        supportFragmentManager.popBackStack()
+
         val dataOutputFragment = DataOutputFragment();
         val argumentBundle = Bundle()
         dataManager = (application as ProjectApp).dataManager
@@ -112,6 +150,7 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
                 Toast.makeText(this, "Loading Data", Toast.LENGTH_LONG).show()
             }
             val input = ArrayList(it)
+            stateInfo = input
             argumentBundle.putParcelableArrayList(DataOutputFragment.STATE_INFO, input)
             dataOutputFragment.arguments = argumentBundle
 

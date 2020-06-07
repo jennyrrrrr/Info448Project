@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/md15dp"
+    android:background="#fff">
+
+    <Button
+        android:id="@+id/txLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#F2F2F2"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/select_a_location"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txChoose"
+        android:layout_marginStart="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txLocation"
+        app:layout_constraintLeft_toRightOf="@id/txLocation"
+        app:layout_constraintTop_toTopOf="@+id/txLocation" />
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:id="@+id/tvIntroduction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/here_is_covid_19_data_in_the_state_of_washington"
+        app:layout_constraintTop_toBottomOf="@id/txLocation"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvCdc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/the_data_below_is_provided_by_cdc"
+        app:layout_constraintTop_toBottomOf="@id/tvIntroduction"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <TableLayout
+        android:id="@+id/tb1"
+        android:layout_width="326dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCdc">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/positive" />
+
+            <TextView
+                android:id="@+id/tvPositive"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="0.25"
+                android:background="#D3D3D3"
+                android:gravity="center"
+                android:text="@string/_0" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/recovered_2" />
+
+            <TextView
+                android:id="@+id/tvRecovered"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="0.25"
+                android:background="#D3D3D3"
+                android:gravity="center"
+                android:text="@string/_0" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/in_hospital" />
+
+            <TextView
+                android:id="@+id/tvHospitalized"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="0.25"
+                android:background="#D3D3D3"
+                android:gravity="center"
+                android:text="@string/_0" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/death" />
+
+            <TextView
+                android:id="@+id/tvDeath"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="0.25"
+                android:background="#D3D3D3"
+                android:gravity="center"
+                android:text="@string/_0" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/tvCompare"
+        android:layout_width="wrap_content"
+        android:text="@string/compare_with_yesterday"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tb1"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TableLayout
+        android:layout_marginTop="@dimen/md15dp"
+        android:id="@+id/tv2"
+        android:layout_width="328dp"
+        android:layout_height="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompare">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/new_positive" />
+
+            <TextView
+                android:id="@+id/tvNewPositive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="#D3D3D3"
+                android:gravity="center"
+                android:text="@string/_0" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/new_death" />
+
+            <TextView
+                android:id="@+id/tvNewDeath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="#D3D3D3"
+                android:gravity="center"
+                android:text="@string/_0" />
+
+        </TableRow>
+    </TableLayout>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="341dp"
+        android:layout_height="269dp"
+        android:layout_marginStart="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
