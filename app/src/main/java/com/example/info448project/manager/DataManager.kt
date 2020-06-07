@@ -11,23 +11,22 @@ import com.example.info448project.model.CountryInfo
 import com.example.info448project.model.StateInfo
 import com.google.gson.Gson
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 
 class DataManager(context: Context) {
 
     private var queue: RequestQueue = Volley.newRequestQueue(context)
-    lateinit var curState: MutableList<StateInfo>
+    lateinit var curState: StateInfo
     lateinit var stateURL: String
     private val curContext = context
-    lateinit var curCountryInfo: MutableList<CountryInfo>
+    lateinit var curCountryInfo: List<CountryInfo>
 
 
 
-    fun getOneState(state: String, onStateInfoReady: (MutableList<StateInfo>) -> Unit) {
+    fun getOneState(state: String, onStateInfoReady: (StateInfo) -> Unit) {
         val stateName = convert(state)
-        stateURL = "https://covidtracking.com/api/v1/states/$stateName/daily.json"
+        stateURL = "https://covidtracking.com/api/v1/states/$stateName/current.json"
 
         val request = StringRequest(
             Request.Method.GET, stateURL,
@@ -35,7 +34,7 @@ class DataManager(context: Context) {
                 // success
                 Log.i("shengtianyi", response.toString())
                 val gson = Gson()
-                curState = gson.fromJson(response, Array<StateInfo>::class.java).toMutableList()
+                curState = gson.fromJson(response, StateInfo::class.java)
                 onStateInfoReady(curState)
             },
             {
@@ -45,8 +44,8 @@ class DataManager(context: Context) {
         queue.add(request)
     }
 
-    fun getCountry(onCountryInfoReady: (MutableList<CountryInfo>) -> Unit) {
-        val stateURL = "https://covidtracking.com/api/v1/us/daily.json"
+    fun getCountry(onCountryInfoReady: (CountryInfo) -> Unit) {
+        val stateURL = "https://covidtracking.com/api/v1/us/current.json"
 
         val request = StringRequest(
             Request.Method.GET, stateURL,
@@ -54,8 +53,8 @@ class DataManager(context: Context) {
                 // success
                 Log.i("shengtianyi", response.toString())
                 val gson = Gson()
-                curCountryInfo = gson.fromJson(response, Array<CountryInfo>::class.java).toMutableList()
-                onCountryInfoReady(curCountryInfo)
+                curCountryInfo = gson.fromJson(response, Array<CountryInfo>::class.java).toList()
+                onCountryInfoReady(curCountryInfo.first())
             },
             {
                 //error
