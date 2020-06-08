@@ -19,12 +19,9 @@ Overall Fragment architecture - This fragment fetches data in JSON format,
 then displays it in a recyclerview
 
 To do:
-- set up json
-- fetch json
-- store json in variable
-- set up one tab
-- display json in recyclerview
+- display number of comments on a post
 - set up multiple tabs
+- expandable comments
 - set up ability to modify data
  */
 class ForumFragment : Fragment() {
@@ -69,19 +66,28 @@ class ForumFragment : Fragment() {
 
         val postAdapter = PostAdapter(blankListForNow)
 
+
         rvForumPosts.adapter = postAdapter
 
 
         forumDataManager.fetchPosts(){ theResponse  ->
             postAdapter.updateList(theResponse)
             Log.i("jhoupps",  "updated the list!")
+            rvForumPosts.visibility = View.VISIBLE
         } //lets see if this goes asyncrhonously
 
         // Set on item Click for the adapter
         postAdapter.onPostClickListener = {
-            postAdapter.updateList(it.comments)
+            var newList = it.comments.toMutableList()
+            newList.add(0, it)
+            postAdapter.goToCommentList(newList)
             btnBack.visibility=View.VISIBLE
 
+        }
+
+        btnBack.setOnClickListener {
+            postAdapter.leaveCommentList()
+            btnBack.visibility = View.GONE
         }
 
     }

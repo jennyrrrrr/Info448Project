@@ -51,6 +51,15 @@
         app:layout_constraintLeft_toRightOf="@id/smProfileImage"
         app:layout_constraintTop_toBottomOf="@id/smTvNickname"/>
 
+    <TextView
+        android:id="@+id/tvNumOfComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintRight_toLeftOf="@id/ivPostDetail"
+        app:layout_constraintTop_toTopOf="@id/ivPostDetail"
+        android:paddingRight="8dp"        />
+
     <ImageView
         android:id="@+id/ivPostDetail"
         android:layout_width="wrap_content"

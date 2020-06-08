@@ -35,6 +35,8 @@
             android:text="Help" />
     </com.google.android.material.tabs.TabLayout>
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvForumPosts"
         android:layout_width="0dp"
@@ -45,6 +47,7 @@
         app:layout_constraintBottom_toTopOf="@id/btnBack"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_post"
+        android:visibility="invisible"
         >
 
     </androidx.recyclerview.widget.RecyclerView>
