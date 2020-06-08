@@ -14,8 +14,7 @@ class PostAdapter(initialListOfPosts: List<Post>): RecyclerView.Adapter<PostAdap
 
 
     private var listOfPosts: List<Post> = initialListOfPosts.toList() // This is so we create a duplicate of the list passed in
-    private var dummy = "test"
-   // var onPersonClickListener: ((person: Person) -> Unit)? = null
+    var onPostClickListener: ((post: Post) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         Log.i("jhoupps",  "A view holder was created!")
@@ -34,6 +33,7 @@ class PostAdapter(initialListOfPosts: List<Post>): RecyclerView.Adapter<PostAdap
         listOfPosts = newlist
         notifyDataSetChanged() //todo if it doesnt work check here
     }
+
 
 //todo update list later
     /*
@@ -67,11 +67,10 @@ class PostAdapter(initialListOfPosts: List<Post>): RecyclerView.Adapter<PostAdap
             tvPostContent.text = post.postContent
 
 
-/* //todo make the on click listener later
             itemView.setOnClickListener {
-                onPersonClickListener?.invoke(person)
+                onPostClickListener?.invoke(post)
             }
-            */
+
 
         }
     }

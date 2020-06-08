@@ -13,7 +13,7 @@ data class Post(
     val smallImageURL: String, //todo deal with this later
     val dateTime: String, //todo put this in proper date time format
     val postContent: String,
-    val comments: List<Comment>
+    val comments: List<Post>
 )
 
 //expected data format
@@ -26,11 +26,6 @@ data class Post(
  */
 
 
-data class Comment(
-    val posterName: String,
-    val smallImageURL: String,
-    val dateTime: String, //todo put this in proper date time format
-    val body: String
-)
+
 
 

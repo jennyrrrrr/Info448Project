@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.info448project.Comment
 import com.example.info448project.Post
 
 import com.example.info448project.R
@@ -53,6 +52,9 @@ class ForumFragment : Fragment() {
         val forumDataManager = ForumDataManager(requireActivity().applicationContext) //this should get me the context according to stack overflow
         Log.i("jhoupps",  "about to fetch posts")
 
+        btnBack.visibility=View.GONE
+
+
 
 
         val initialPost = Post(
@@ -61,7 +63,7 @@ class ForumFragment : Fragment() {
             smallImageURL = "www.someplace",
             dateTime = "1:45 5.13.15",
             postContent = "I am posting a thing!",
-            comments = listOf<Comment>()
+            comments = listOf<Post>()
         )
         val blankListForNow = listOf<Post>(initialPost)
 
@@ -74,30 +76,14 @@ class ForumFragment : Fragment() {
             postAdapter.updateList(theResponse)
             Log.i("jhoupps",  "updated the list!")
         } //lets see if this goes asyncrhonously
-     //   Log.i("jhoupps",  "it was called!")
-        //todo - on click show comments?
-        /*
+
         // Set on item Click for the adapter
-        personAdapter.onPersonClickListener = { somePerson: Person ->
+        postAdapter.onPostClickListener = {
+            postAdapter.updateList(it.comments)
+            btnBack.visibility=View.VISIBLE
 
-            val intent = Intent(this, PersonActivity::class.java)
-//            intent.putExtra(NAME_KEY, name)
-////            intent.putExtra(POSITION_KEY, pos)
-//
-            intent.putExtra(PERSON_KEY, somePerson)
-
-            startActivity(intent)
-            */
+        }
 
     }
 
-
-    fun setUpRecyclerView(generalListOfPosts: List<Post>){
-        /*
-        val postAdapter = PostAdapter(generalListOfPosts)
-
-        rvForumPosts.adapter = postAdapter
-        Log.i("jhoupps",  "it was called!")
-*/
-    }
 }
