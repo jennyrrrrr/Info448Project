@@ -15,7 +15,7 @@ class ForumDataManager(context: Context) {
     val queue = Volley.newRequestQueue(context)
 
     //Fetching the JSON from the internet
-    fun fetchPosts() {
+    fun fetchPosts(onSuccessLambdaFunctionThing: (List<Post>) -> Unit) {
         //Call the JSON from the api
         // Instantiate the RequestQueue.
         val url = "https://raw.githubusercontent.com/rongt2-1861545/Info448Project/jay_dev/sampleForumData/sampleForumPosts.json"
@@ -27,9 +27,7 @@ class ForumDataManager(context: Context) {
                 Log.i("jhoupps", "Response is: ${response.substring(0, 500)}")
                 val genPosts = parseData(response) //todo change this to be not just general chat
 
-                val theMainFragment =
-                    ForumFragment()
-                theMainFragment.setUpRecyclerView(genPosts)
+                onSuccessLambdaFunctionThing(genPosts)
             },
             Response.ErrorListener { Log.i("jhoupps",  "That didn't work!") })
 

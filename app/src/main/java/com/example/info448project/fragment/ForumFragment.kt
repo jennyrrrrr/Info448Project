@@ -53,7 +53,7 @@ class ForumFragment : Fragment() {
         val forumDataManager = ForumDataManager(requireActivity().applicationContext) //this should get me the context according to stack overflow
         Log.i("jhoupps",  "about to fetch posts")
 
-        forumDataManager.fetchPosts() //lets see if this goes asyncrhonously
+
 
         val initialPost = Post(
             posterName = "Mr Test",
@@ -68,7 +68,13 @@ class ForumFragment : Fragment() {
         val postAdapter = PostAdapter(blankListForNow)
 
         rvForumPosts.adapter = postAdapter
-        Log.i("jhoupps",  "it was called!")
+
+
+        forumDataManager.fetchPosts(){ theResponse  ->
+            postAdapter.updateList(theResponse)
+            Log.i("jhoupps",  "updated the list!")
+        } //lets see if this goes asyncrhonously
+     //   Log.i("jhoupps",  "it was called!")
         //todo - on click show comments?
         /*
         // Set on item Click for the adapter

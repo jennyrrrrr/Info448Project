@@ -29,6 +29,12 @@ class PostAdapter(initialListOfPosts: List<Post>): RecyclerView.Adapter<PostAdap
         val person = listOfPosts[position]
         holder.bind(person, position)
     }
+
+    fun updateList(newlist: List<Post>){
+        listOfPosts = newlist
+        notifyDataSetChanged() //todo if it doesnt work check here
+    }
+
 //todo update list later
     /*
    fun change(newPeople: List<Person>) {
