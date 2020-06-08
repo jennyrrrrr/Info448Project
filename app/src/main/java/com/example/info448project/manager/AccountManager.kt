@@ -57,4 +57,10 @@ class AccountManager() {
                 Log.w("jen", "Error updating user: $userId  with the location: $location", e)
             }
     }
+  
+    fun updateUserInfo(location: String, bio: String, nickname: String) {
+        this.location = location
+        this.bio = bio
+        this.nickname = nickname
+    }
 }

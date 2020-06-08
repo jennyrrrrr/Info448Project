@@ -23,12 +23,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.app
 import kotlinx.android.synthetic.main.edit_profile.*
+import kotlinx.android.synthetic.main.profile_page.*
 
 class EditProfileFragment: Fragment() {
     private lateinit var database: DatabaseReference
     private lateinit var userId: String
     private lateinit var auth: FirebaseAuth
     private lateinit var accountManager: AccountManager
+    private lateinit var firebaseFirestore: FirebaseFirestore
+    private var profileFragment: Fragment? = null
 
     companion object {
         val TAG: String = EditProfileFragment::class.java.simpleName
@@ -58,16 +61,34 @@ class EditProfileFragment: Fragment() {
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
         }
+        btnComplete.setOnClickListener { updateProfile() }
+    }
 
-        btnComplete.setOnClickListener {
-            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-            fragmentManager.popBackStack()
+    private fun updateProfile() {
+        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+        profileFragment = fragmentManager.findFragmentByTag(ProfileFragment.PTAG);
 
-            auth = FirebaseAuth.getInstance()
-            userId = auth.currentUser!!.uid
-            val nickname = etName.text.toString()
-            val bio = etBio.text.toString()
-            val location = etLocation.text.toString()
+        auth = FirebaseAuth.getInstance()
+        userId = auth.currentUser!!.uid
+        val nickname = etName.text.toString()
+        val bio = etBio.text.toString()
+        val location = etLocation.text.toString()
+
+        firebaseFirestore = FirebaseFirestore.getInstance()
+        val docRef = firebaseFirestore.collection("users").document(userId)
+
+        docRef
+            .update(mapOf(
+                "nickname" to nickname,
+                "bio" to bio,
+                "location" to location
+            ))
+            .addOnSuccessListener {
+                Log.d(TAG, "DocumentSnapshot successfully updated!")
+                accountManager.updateUserInfo(bio, location, nickname)
+                fragmentManager.popBackStack()
+            }
+            .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
 
             database.child("users").child("$userId").child("nickname").setValue("$nickname");
         }

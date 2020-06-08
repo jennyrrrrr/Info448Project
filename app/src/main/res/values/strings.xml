@@ -45,4 +45,6 @@
     <string name="title_healthtip_list">HealthTips</string>
     <string name="title_healthtip_detail">HealthTip Detail</string>
     <string name="food_desc">You should always handle and prepare food safely, including keeping raw meat seperate from other foods, refrigerating perishable foods, and cooking meat to the right temperature to kill harmful bacteria. In general, because of the poor survivability of coronaviruses on surfaces, there is likely very low risk of spread from food products or packaging. </string>
+    <string name="recovered">recovered</string>
+    <string name="recovered_2">Recovered</string>
 </resources>

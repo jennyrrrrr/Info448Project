@@ -47,102 +47,102 @@
         />
 
     <TableLayout
-        android:layout_marginTop="10dp"
         android:id="@+id/tb1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvCdc"
-        app:layout_constraintLeft_toLeftOf="parent">
+        android:layout_width="326dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCdc">
 
         <TableRow
-            android:weightSum="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="1">
 
             <TextView
-                android:clickable="true"
-                android:gravity="center"
-                android:background = "@drawable/border"
-                android:layout_weight="0.25"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="@string/positive"
-                android:focusable="true" />
+                android:layout_weight="0.25"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/positive" />
 
             <TextView
-                android:background = "#D3D3D3"
-                android:gravity="center"
                 android:id="@+id/tvPositive"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_weight="0.25"
+                android:background="#D3D3D3"
+                android:gravity="center"
                 android:text="@string/_0" />
 
 
             <TextView
-                android:focusable="true"
-                android:clickable="true"
-                android:background = "@drawable/border"
-                android:gravity="center"
-                android:layout_weight="0.25"
-                android:layout_height="30dp"
                 android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
                 android:text="@string/recovered_2" />
 
             <TextView
-                android:background = "#D3D3D3"
-                android:gravity="center"
                 android:id="@+id/tvRecovered"
-                android:layout_weight="0.25"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="@string/_0"/>
+                android:layout_weight="0.25"
+                android:background="#D3D3D3"
+                android:gravity="center"
+                android:text="@string/_0" />
 
         </TableRow>
 
         <TableRow
-            android:weightSum="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="1">
 
             <TextView
-                android:focusable="true"
-                android:clickable="true"
-                android:gravity="center"
-                android:background = "@drawable/border"
-                android:layout_weight="0.25"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="@string/in_hospital"/>
+                android:layout_weight="0.25"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/in_hospital" />
 
             <TextView
-                android:gravity="center"
-                android:background = "#D3D3D3"
                 android:id="@+id/tvHospitalized"
-                android:layout_weight="0.25"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="@string/_0"/>
+                android:layout_weight="0.25"
+                android:background="#D3D3D3"
+                android:gravity="center"
+                android:text="@string/_0" />
 
 
             <TextView
-                android:focusable="true"
-                android:clickable="true"
-                android:gravity="center"
-                android:background = "@drawable/border"
-                android:layout_weight="0.25"
-                android:layout_height="30dp"
                 android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
                 android:text="@string/death" />
 
             <TextView
-                android:gravity="center"
-                android:background = "#D3D3D3"
                 android:id="@+id/tvDeath"
-                android:layout_weight="0.25"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="@string/_0"/>
+                android:layout_weight="0.25"
+                android:background="#D3D3D3"
+                android:gravity="center"
+                android:text="@string/_0" />
 
         </TableRow>
 
@@ -158,69 +158,69 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <TableLayout
+        android:layout_marginTop="@dimen/md15dp"
         android:id="@+id/tv2"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvCompare"
-        app:layout_constraintLeft_toLeftOf="parent">
+        android:layout_width="328dp"
+        android:layout_height="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompare">
 
-    <TableRow
-        android:weightSum="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="UselessParent">
-
-        <TextView
-            android:focusable="true"
-            android:clickable="true"
-            android:gravity="center"
-            android:background = "@drawable/border"
-            android:layout_weight="0.25"
+        <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/new_positive"/>
+            android:weightSum="1"
+            tools:ignore="UselessParent">
 
-        <TextView
-            android:gravity="center"
-            android:background = "#D3D3D3"
-            android:id="@+id/tvNewPositive"
-            android:layout_weight="0.25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/_0"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/new_positive" />
+
+            <TextView
+                android:id="@+id/tvNewPositive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="#D3D3D3"
+                android:gravity="center"
+                android:text="@string/_0" />
 
 
-        <TextView
-            android:focusable="true"
-            android:clickable="true"
-            android:gravity="center"
-            android:background = "@drawable/border"
-            android:layout_weight="0.25"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="@string/new_death" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/new_death" />
 
-        <TextView
-            android:gravity="center"
-            android:background = "#D3D3D3"
-            android:id="@+id/tvNewDeath"
-            android:layout_weight="0.25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/_0"/>
+            <TextView
+                android:id="@+id/tvNewDeath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="#D3D3D3"
+                android:gravity="center"
+                android:text="@string/_0" />
 
-    </TableRow>
-</TableLayout>
+        </TableRow>
+    </TableLayout>
 
     <com.github.mikephil.charting.charts.LineChart
-        android:layout_marginTop="15dp"
         android:id="@+id/chart"
-        android:layout_width="357dp"
-        android:layout_height="263dp"
+        android:layout_width="341dp"
+        android:layout_height="269dp"
+        android:layout_marginStart="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv2" />
+        app:layout_constraintStart_toEndOf="@+id/tv2"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
