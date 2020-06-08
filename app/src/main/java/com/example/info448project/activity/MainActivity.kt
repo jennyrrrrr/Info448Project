@@ -6,11 +6,13 @@ import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.info448project.ProjectApp
 import com.example.info448project.fragment.ProfileFragment
 import com.example.info448project.R
 import com.example.info448project.fragment.DataOutputFragment
 import com.example.info448project.fragment.OnStateSelectListener
+import com.example.info448project.fragment.ProfileFragment.Companion.PTAG
 import com.example.info448project.fragment.StateCardFragment
 import com.example.info448project.manager.AccountManager
 import com.example.info448project.manager.DataManager
@@ -32,24 +34,26 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
         setContentView(R.layout.activity_main)
         title = "C19-SUPPORT"
 
+        accountManager = (this.applicationContext as ProjectApp).accountManager
         supportFragmentManager.addOnBackStackChangedListener {
             val hasBackEntries = supportFragmentManager.backStackEntryCount > 1
-            supportActionBar?.setDisplayHomeAsUpEnabled( hasBackEntries)
+            supportActionBar?.setDisplayHomeAsUpEnabled(hasBackEntries)
 
-            tabBar?.visibility = if (hasBackEntries) {
-                View.GONE
-            } else {
-                View.VISIBLE
+             if (hasBackEntries) {
+                 tabBar?.visibility = View.GONE
+             } else {
+                 tabBar?.visibility = View.VISIBLE
             }
+
         }
 
-        accountManager = (this.applicationContext as ProjectApp).accountManager
         accountManager.getUserInfo()
-        if (savedInstanceState != null) {
 
-            dataOutputFragment =
-                supportFragmentManager.getFragment(savedInstanceState, DataOutputFragment.TAG) as DataOutputFragment
-        }
+//        if (savedInstanceState != null) {
+//            dataOutputFragment =
+//                supportFragmentManager.getFragment(savedInstanceState, DataOutputFragment.TAG) as DataOutputFragment
+//        }
+
         showData()
         btnProfile.setOnClickListener { showProfile() }
         btnData.setOnClickListener { showData() }
@@ -57,6 +61,14 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
         // enable my workmanager class
         workBackgroundManager = (this.applicationContext as ProjectApp).workBackgroundManager
         workBackgroundManager.startFetchForDaily()
+
+        supportFragmentManager.addOnBackStackChangedListener {
+            val profileFragment = supportFragmentManager.findFragmentByTag(ProfileFragment.PTAG) as? ProfileFragment
+            if (profileFragment != null && profileFragment.isVisible == true) {
+                profileFragment.setInfo()
+                title="Profile"
+            }
+        }
     }
 
     private fun getDataOutputFragment() =
@@ -126,8 +138,8 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
         val profileFragment = ProfileFragment()
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragContainer, profileFragment, ProfileFragment.TAG)
-            .addToBackStack(ProfileFragment.TAG)
+            .add(R.id.fragContainer, profileFragment, ProfileFragment.PTAG)
+            .addToBackStack(ProfileFragment.PTAG)
             .commit()
     }
 

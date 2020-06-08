@@ -2,6 +2,7 @@ package com.example.info448project.fragment
 
 import android.os.Bundle
 import android.util.Log
+import android.util.Log.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,9 +21,10 @@ class ProfileFragment: Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var accountManager: AccountManager
+//    private var profileFragment: Fragment? = null
 
     companion object {
-        val TAG: String = ProfileFragment::class.java.simpleName
+        val PTAG: String = ProfileFragment::class.java.simpleName
     }
 
     override fun onCreateView(
@@ -41,16 +43,19 @@ class ProfileFragment: Fragment() {
         userId = auth.currentUser!!.uid
         firebaseFirestore = FirebaseFirestore.getInstance()
         accountManager = (context?.applicationContext as ProjectApp).accountManager
-
 //        accountManager.getUserInfo()
 
+        setInfo()
+    }
+
+    fun setInfo() {
         tvNickname.text = accountManager.nickname
         Toast.makeText(context, "${accountManager.nickname}", Toast.LENGTH_SHORT).show()
         tvMainUsername.text = accountManager.email
         tvMainBio.text = accountManager.bio
         tvLocation2.text = accountManager.location
 
-        btnEdit.setOnClickListener {showEditProfileFragment() }
+        btnEdit.setOnClickListener { showEditProfileFragment() }
 
         if (tvLocation2.text === "") {
             ivLocation.visibility = View.GONE
@@ -68,4 +73,5 @@ class ProfileFragment: Fragment() {
             .addToBackStack(EditProfileFragment.TAG)
             .commit()
     }
+
 }

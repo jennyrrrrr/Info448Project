@@ -37,4 +37,10 @@ class AccountManager() {
             }
         }
     }
+
+    fun updateUserInfo(location: String, bio: String, nickname: String) {
+        this.location = location
+        this.bio = bio
+        this.nickname = nickname
+    }
 }

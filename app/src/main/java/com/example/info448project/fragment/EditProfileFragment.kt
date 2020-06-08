@@ -22,6 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.app
 import kotlinx.android.synthetic.main.edit_profile.*
+import kotlinx.android.synthetic.main.profile_page.*
 
 class EditProfileFragment: Fragment() {
     private lateinit var database: DatabaseReference
@@ -29,6 +30,7 @@ class EditProfileFragment: Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var accountManager: AccountManager
     private lateinit var firebaseFirestore: FirebaseFirestore
+    private var profileFragment: Fragment? = null
 
     companion object {
         val TAG: String = EditProfileFragment::class.java.simpleName
@@ -63,7 +65,7 @@ class EditProfileFragment: Fragment() {
 
     private fun updateProfile() {
         val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-        fragmentManager.popBackStack()
+        profileFragment = fragmentManager.findFragmentByTag(ProfileFragment.PTAG);
 
         auth = FirebaseAuth.getInstance()
         userId = auth.currentUser!!.uid
@@ -80,7 +82,12 @@ class EditProfileFragment: Fragment() {
                 "bio" to bio,
                 "location" to location
             ))
-            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated!") }
+            .addOnSuccessListener {
+                Log.d(TAG, "DocumentSnapshot successfully updated!")
+                accountManager.updateUserInfo(bio, location, nickname)
+                fragmentManager.popBackStack()
+            }
             .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
+
     }
 }
