@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
 
         supportFragmentManager.addOnBackStackChangedListener {
             val profileFragment = supportFragmentManager.findFragmentByTag(ProfileFragment.PTAG) as? ProfileFragment
-            if (profileFragment != null && profileFragment.isVisible == true) {
+            if (profileFragment != null && profileFragment.isVisible) {
                 profileFragment.setInfo()
                 title="Profile"
             }
