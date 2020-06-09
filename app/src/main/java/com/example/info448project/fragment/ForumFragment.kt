@@ -41,6 +41,7 @@ class ForumFragment : Fragment() {
     //It fetches the data, initializes the recyclerview, and specifies the controls of each button
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.title = "Forum"
 
         //Fetching data for the forum asyncrhonously
         val forumDataManager = ForumDataManager(requireActivity().applicationContext) //this should get me the context according to stack overflow

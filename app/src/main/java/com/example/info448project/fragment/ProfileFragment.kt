@@ -50,7 +50,7 @@ class ProfileFragment: Fragment() {
 
     fun setInfo() {
         tvNickname.text = accountManager.nickname
-        Toast.makeText(context, "${accountManager.nickname}", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "${accountManager.nickname}", Toast.LENGTH_SHORT).show()
         tvMainUsername.text = accountManager.email
         tvMainBio.text = accountManager.bio
         tvLocation2.text = accountManager.location

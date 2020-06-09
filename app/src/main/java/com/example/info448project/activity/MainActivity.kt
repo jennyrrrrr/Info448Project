@@ -60,16 +60,23 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
         btnProfile.setOnClickListener {
             btnProfile.setBackgroundResource(R.color.grey)
             btnData.setBackgroundColor(Color.TRANSPARENT)
+            btnForum.setBackgroundColor(Color.TRANSPARENT)
             showProfile()
         }
 
         btnData.setOnClickListener {
             btnData.setBackgroundResource(R.color.grey)
             btnProfile.setBackgroundColor(Color.TRANSPARENT)
+            btnProfile.setBackgroundColor(Color.TRANSPARENT)
             showData()
         }
 
-        btnForum.setOnClickListener{ showForum() }
+        btnForum.setOnClickListener{
+            btnForum.setBackgroundResource(R.color.grey)
+            btnProfile.setBackgroundColor(Color.TRANSPARENT)
+            btnData.setBackgroundColor(Color.TRANSPARENT)
+            showForum()
+        }
 
         // enable my workmanager class
         workBackgroundManager = (this.applicationContext as ProjectApp).workBackgroundManager

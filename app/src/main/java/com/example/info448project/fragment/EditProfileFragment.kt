@@ -62,7 +62,7 @@ class EditProfileFragment: Fragment() {
             startActivity(intent)
         }
         btnComplete.setOnClickListener { updateProfile() }
-        btnLocation.setOnClickListener {
+        ivLocationBtn.setOnClickListener {
             val intent = Intent(context, LocationPickerActivity::class.java)
             startActivity(intent)
         }

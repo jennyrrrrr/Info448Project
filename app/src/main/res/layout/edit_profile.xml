@@ -61,7 +61,7 @@
     <View
         android:id="@+id/line0"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="0.8dp"
         android:layout_marginTop="35dp"
         android:background="#808080"
         app:layout_constraintTop_toBottomOf="@id/profileImage"/>
@@ -96,7 +96,7 @@
     <View
         android:id="@+id/line1"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="0.8dp"
         android:layout_marginTop="12dp"
         android:background="#808080"
         app:layout_constraintTop_toBottomOf="@id/etName"/>
@@ -130,7 +130,7 @@
     <View
         android:id="@+id/line2"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="0.8dp"
         android:layout_marginTop="50dp"
         android:background="#808080"
         app:layout_constraintTop_toBottomOf="@id/etBio"/>
@@ -162,27 +162,38 @@
         app:layout_constraintTop_toBottomOf="@id/line2"
         app:layout_constraintRight_toRightOf="parent"/>
 
+    <ImageView
+        android:id="@+id/ivLocationBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_location_on_black_24dp"
+        app:layout_constraintTop_toBottomOf="@id/line2"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="11dp"
+        android:layout_marginRight="45dp"
+        android:tint="@color/grey"/>
+
     <View
         android:id="@+id/line3"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="40dp"
         android:background="#808080"
         app:layout_constraintTop_toBottomOf="@id/etLocation"/>
 
-    <Button
-        android:id="@+id/btnLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Location"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/button_3"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:textColor="@color/grey"
-        app:layout_constraintTop_toBottomOf="@id/line3"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+<!--    <Button-->
+<!--        android:id="@+id/btnLocation"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Select Location"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:background="@drawable/button_3"-->
+<!--        android:paddingLeft="40dp"-->
+<!--        android:paddingRight="40dp"-->
+<!--        android:textColor="@color/grey"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/line3"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"/>-->
 
     <Button
         android:id="@+id/btnLogout"
