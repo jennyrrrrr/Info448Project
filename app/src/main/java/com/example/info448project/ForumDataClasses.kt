@@ -2,7 +2,9 @@ package com.example.info448project
 
 //Holds All Posts
 data class AllPosts(
-    val general: List<Post>
+    val general: List<Post>,
+    val supplies: List<Post>,
+    val help: List<Post>
     //todo - once I add more types, add them here
 )
 

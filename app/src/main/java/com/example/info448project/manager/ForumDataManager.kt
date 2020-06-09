@@ -15,7 +15,7 @@ class ForumDataManager(context: Context) {
     val queue = Volley.newRequestQueue(context)
 
     //Fetching the JSON from the internet
-    fun fetchPosts(onSuccessLambdaFunctionThing: (List<Post>) -> Unit) {
+    fun fetchPosts(onSuccessLambdaFunctionThing: (AllPosts) -> Unit) {
         //Call the JSON from the api
         // Instantiate the RequestQueue.
         val url = "https://raw.githubusercontent.com/rongt2-1861545/Info448Project/jay_dev/sampleForumData/sampleForumPosts.json"
@@ -25,9 +25,9 @@ class ForumDataManager(context: Context) {
             Response.Listener<String> { response ->
                 // Display the first 500 characters of the response string.
                 Log.i("jhoupps", "Response is: ${response.substring(0, 500)}")
-                val genPosts = parseData(response) //todo change this to be not just general chat
+                val allPosts = parseData(response) //todo change this to be not just general chat
 
-                onSuccessLambdaFunctionThing(genPosts)
+                onSuccessLambdaFunctionThing(allPosts)
             },
             Response.ErrorListener { Log.i("jhoupps",  "That didn't work!") })
 
@@ -39,7 +39,7 @@ class ForumDataManager(context: Context) {
 
     //Parse the data that was fetched in JSON form
     //Uses GSON
-    fun parseData(theData: String): List<Post> {
+    fun parseData(theData: String): AllPosts {
         val gson = Gson()
         val allPosts: AllPosts = gson.fromJson(theData, AllPosts::class.java)
         Log.i("jhoupps","HELLO I AM PARSING DATA")
@@ -47,7 +47,7 @@ class ForumDataManager(context: Context) {
         allPosts.general.let { //todo change this once i add more tabs
             Log.i("jhoupps", "Parsed a content of: $it")
         }
-        return allPosts.general
+        return allPosts
 
 
     }

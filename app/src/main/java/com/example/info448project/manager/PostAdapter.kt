@@ -8,17 +8,24 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.info448project.AllPosts
 import com.example.info448project.R
+import kotlinx.android.synthetic.main.fragment_forum.*
 import org.w3c.dom.Text
 import java.lang.Error
 
 class PostAdapter(initialListOfPosts: List<Post>): RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
 
-    private var listOfPosts: List<Post> = initialListOfPosts.toList() // This is so we create a duplicate of the list passed in
+    private var theorigianllistOfPosts: List<Post> = initialListOfPosts.toList() // This is so we create a duplicate of the list passed in
     var onPostClickListener: ((post: Post) -> Unit)? = null
-    var overallList = listOf<Post>()
-    var isInComments = false
+
+    var overallGenList = listOf<Post>()
+    var overallSupplyList = listOf<Post>()
+    var overallHelpList = listOf<Post>()
+    var listBeingDisplayed = listOf<Post>()
+    var listCurrentlyToggled = listOf<Post>()
+    private var isInComments = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         Log.i("jhoupps",  "A view holder was created!")
@@ -26,30 +33,54 @@ class PostAdapter(initialListOfPosts: List<Post>): RecyclerView.Adapter<PostAdap
         return PostViewHolder(view)
     }
 
-    override fun getItemCount() = listOfPosts.size
+    override fun getItemCount() = listBeingDisplayed.size
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int): Unit {
-        val person = listOfPosts[position]
+        val person = listBeingDisplayed[position]
         holder.bind(person, position)
     }
 
+    fun initializeLists(theposts: AllPosts){
+        overallGenList = theposts.general
+        overallSupplyList = theposts.supplies
+        overallHelpList = theposts.help
+
+        listBeingDisplayed = overallGenList
+
+        notifyDataSetChanged()
+    }
     fun updateList(newlist: List<Post>){
-        overallList = newlist
-        listOfPosts = newlist
+        listBeingDisplayed = newlist
+        listCurrentlyToggled = newlist
         notifyDataSetChanged() //todo if it doesnt work check here
     }
 
-    fun goToCommentList(newlist: List<Post>){
+    fun goToCommentList(commentlist: List<Post>){
         if(!isInComments) {
-            overallList = listOfPosts
-            listOfPosts = newlist
-            notifyDataSetChanged() 
+            listCurrentlyToggled = listBeingDisplayed //in case a change was made somehow
+            listBeingDisplayed = commentlist
+            notifyDataSetChanged()
         }
     }
 
     fun leaveCommentList(){
-        listOfPosts = overallList
+        listBeingDisplayed = listCurrentlyToggled
         notifyDataSetChanged()
+    }
+
+    fun switchTab(newTab: String){
+        Log.i("jhoupps",  "I am switching to $newTab")
+
+        when (newTab) {
+            "general" -> listCurrentlyToggled = overallGenList
+            "supplies" -> listCurrentlyToggled = overallSupplyList
+            "help" -> listCurrentlyToggled = overallHelpList
+        }
+
+        listBeingDisplayed = listCurrentlyToggled
+        notifyDataSetChanged()
+
+
     }
 
 
