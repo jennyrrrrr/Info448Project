@@ -12,6 +12,7 @@ import com.example.info448project.fragment.ProfileFragment
 import com.example.info448project.R
 import com.example.info448project.fragment.DataOutputFragment
 import com.example.info448project.fragment.OnStateSelectListener
+import com.example.info448project.fragment.ForumFragment
 import com.example.info448project.manager.AccountManager
 import com.example.info448project.manager.DataManager
 import com.example.info448project.manager.WorkBackgroundManager
@@ -64,6 +65,8 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
             btnProfile.setBackgroundColor(Color.TRANSPARENT)
             showData()
         }
+
+        btnForum.setOnClickListener{ showForum() }
 
         // enable my workmanager class
         workBackgroundManager = (this.applicationContext as ProjectApp).workBackgroundManager
@@ -130,6 +133,18 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
             .beginTransaction()
             .add(R.id.fragContainer, profileFragment, ProfileFragment.PTAG)
             .addToBackStack(ProfileFragment.PTAG)
+            .commit()
+    }
+
+    // enable Forum fragment here
+    private fun showForum() {
+        supportFragmentManager.popBackStack()
+
+        val forumFragment = ForumFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragContainer, forumFragment, ForumFragment.TAG)
+            .addToBackStack(ForumFragment.TAG)
             .commit()
     }
 
