@@ -135,7 +135,7 @@
             android:textStyle="bold"
             android:textColor="#000"
             android:text="You haven't posted yet"
-            android:textSize="25sp"
+            android:textSize="22sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

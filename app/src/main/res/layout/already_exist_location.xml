@@ -82,14 +82,14 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:layout_weight="0.25"
-                android:background="#F2F2F2"
+                android:background="#DCDCDC"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:text="@string/positive"
                 android:focusable="true" />
 
             <TextView
-                android:background="#F2F2F2"
+                android:background="#DCDCDC"
                 android:gravity="center"
                 android:id="@+id/tvPositive"
                 android:textColor="#E34C4F"
@@ -104,13 +104,13 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:layout_weight="0.25"
-                android:background="#F2F2F2"
+                android:background="#DCDCDC"
                 android:layout_height="30dp"
                 android:layout_width="wrap_content"
                 android:text="@string/recovered_2" />
 
             <TextView
-                android:background="#F2F2F2"
+                android:background="#DCDCDC"
                 android:gravity="center"
                 android:textColor="#4C7F1A"
                 android:id="@+id/tvRecovered"
@@ -198,7 +198,7 @@
             android:focusable="true"
             android:clickable="true"
             android:gravity="center"
-            android:background="#F2F2F2"
+            android:background="#DCDCDC"
             android:layout_weight="0.25"
             android:padding="5dp"
             android:layout_width="wrap_content"
@@ -207,7 +207,7 @@
 
         <TextView
             android:gravity="center"
-            android:background="#F2F2F2"
+            android:background="#DCDCDC"
             android:textColor="#E34C4F"
             android:id="@+id/tvNewPositive"
             android:layout_weight="0.25"
@@ -222,7 +222,7 @@
             android:clickable="true"
             android:gravity="center"
             android:padding="5dp"
-            android:background="#F2F2F2"
+            android:background="#DCDCDC"
             android:layout_weight="0.25"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -230,7 +230,7 @@
 
         <TextView
             android:gravity="center"
-            android:background="#F2F2F2"
+            android:background="#DCDCDC"
             android:id="@+id/tvNewDeath"
             android:padding="5dp"
             android:layout_weight="0.25"

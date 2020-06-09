@@ -58,21 +58,21 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
         showData()
         btnNews.setOnClickListener { showTips() }
         btnProfile.setOnClickListener {
-            btnProfile.setBackgroundResource(R.color.grey)
+            btnProfile.setBackgroundResource(R.color.mdGrey)
             btnData.setBackgroundColor(Color.TRANSPARENT)
             btnForum.setBackgroundColor(Color.TRANSPARENT)
             showProfile()
         }
 
         btnData.setOnClickListener {
-            btnData.setBackgroundResource(R.color.grey)
+            btnData.setBackgroundResource(R.color.mdGrey)
             btnProfile.setBackgroundColor(Color.TRANSPARENT)
             btnProfile.setBackgroundColor(Color.TRANSPARENT)
             showData()
         }
 
         btnForum.setOnClickListener{
-            btnForum.setBackgroundResource(R.color.grey)
+            btnForum.setBackgroundResource(R.color.mdGrey)
             btnProfile.setBackgroundColor(Color.TRANSPARENT)
             btnData.setBackgroundColor(Color.TRANSPARENT)
             showForum()

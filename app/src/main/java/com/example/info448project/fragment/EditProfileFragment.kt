@@ -94,6 +94,6 @@ class EditProfileFragment: Fragment() {
             }
             .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
 
-            database.child("users").child("$userId").child("nickname").setValue("$nickname");
+//            database.child("users").child("$userId").child("nickname").setValue("$nickname");
         }
     }

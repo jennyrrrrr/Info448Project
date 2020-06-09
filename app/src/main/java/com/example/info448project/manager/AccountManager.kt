@@ -49,7 +49,8 @@ class AccountManager() {
             "location" to this.location,
             "bio" to this.bio
         )
-        val docRef = firebaseFirestore.collection("users").document(userId).update(userInfo as Map<String, Any>)
+        val docRef = firebaseFirestore.collection("users").document(userId)
+        docRef.update(userInfo as Map<String, Any>)
             .addOnSuccessListener {
                 Log.d("jen", "User with ID: $userId set location to $location")
             }
@@ -58,7 +59,7 @@ class AccountManager() {
             }
     }
   
-    fun updateUserInfo(location: String, bio: String, nickname: String) {
+    fun updateUserInfo(bio: String, location: String, nickname: String) {
         this.location = location
         this.bio = bio
         this.nickname = nickname

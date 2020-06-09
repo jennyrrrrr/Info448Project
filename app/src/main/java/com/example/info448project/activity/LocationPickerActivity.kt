@@ -43,8 +43,7 @@ import retrofit2.Response
 import timber.log.Timber
 
 
-class LocationPickerActivity : AppCompatActivity(), PermissionsListener,
-    OnMapReadyCallback {
+class LocationPickerActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallback {
     private var mapView: MapView? = null
     private var mapboxMap: MapboxMap? = null
     private var selectLocationButton: Button? = null
