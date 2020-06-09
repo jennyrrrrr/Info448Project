@@ -62,6 +62,10 @@ class EditProfileFragment: Fragment() {
             startActivity(intent)
         }
         btnComplete.setOnClickListener { updateProfile() }
+        btnLocation.setOnClickListener {
+            val intent = Intent(context, LocationPickerActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun updateProfile() {
@@ -92,10 +96,4 @@ class EditProfileFragment: Fragment() {
 
             database.child("users").child("$userId").child("nickname").setValue("$nickname");
         }
-
-        btnLocation.setOnClickListener {
-            val intent = Intent(context, LocationPickerActivity::class.java)
-            startActivity(intent)
-        }
     }
-}
