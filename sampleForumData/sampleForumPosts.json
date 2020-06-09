@@ -103,7 +103,7 @@
          ]
       }
     ], 
-    "Supplies":[
+    "supplies":[
       {
          "posterName":"Janice Dolly",
          "posterUserName":"@jdolly",
@@ -198,7 +198,7 @@
         ]
      }
    ], 
-   "Help":[
+   "help":[
       {
          "posterName":"Janice Dolly",
          "posterUserName":"@jdolly",
