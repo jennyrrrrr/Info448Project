@@ -14,7 +14,10 @@
         android:layout_height="56dp"
         android:src="@drawable/profile_placeholder"
         app:civ_border_color="#fff"
-        app:civ_border_width="1dp" />
+        app:civ_border_width="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/smTvNickname"
@@ -25,6 +28,7 @@
         android:textStyle="bold"
         android:layout_marginLeft="18dp"
         android:text="@string/nickname"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/smProfileImage"/>
 
     <TextView
@@ -46,6 +50,15 @@
         android:text="@string/post_and_reply_contents"
         app:layout_constraintLeft_toRightOf="@id/smProfileImage"
         app:layout_constraintTop_toBottomOf="@id/smTvNickname"/>
+
+    <TextView
+        android:id="@+id/tvNumOfComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintRight_toLeftOf="@id/ivPostDetail"
+        app:layout_constraintTop_toTopOf="@id/ivPostDetail"
+        android:paddingRight="8dp"        />
 
     <ImageView
         android:id="@+id/ivPostDetail"
