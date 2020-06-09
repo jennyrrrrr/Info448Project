@@ -2,20 +2,19 @@ package com.example.info448project.activity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.example.info448project.ProjectApp
 import com.example.info448project.fragment.ProfileFragment
 import com.example.info448project.R
 import com.example.info448project.fragment.DataOutputFragment
 import com.example.info448project.fragment.OnStateSelectListener
-import com.example.info448project.fragment.ProfileFragment.Companion.PTAG
-import com.example.info448project.fragment.StateCardFragment
+import com.example.info448project.fragment.ForumFragment
 import com.example.info448project.manager.AccountManager
 import com.example.info448project.manager.DataManager
 import com.example.info448project.manager.WorkBackgroundManager
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
             }
 
         }
-
+        btnData.setBackgroundResource(R.color.grey)
         accountManager.getUserInfo()
 
 //        if (savedInstanceState != null) {
@@ -58,8 +57,19 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
 
         showData()
         btnNews.setOnClickListener { showTips() }
-        btnProfile.setOnClickListener { showProfile() }
-        btnData.setOnClickListener { showData() }
+        btnProfile.setOnClickListener {
+            btnProfile.setBackgroundResource(R.color.grey)
+            btnData.setBackgroundColor(Color.TRANSPARENT)
+            showProfile()
+        }
+
+        btnData.setOnClickListener {
+            btnData.setBackgroundResource(R.color.grey)
+            btnProfile.setBackgroundColor(Color.TRANSPARENT)
+            showData()
+        }
+
+        btnForum.setOnClickListener{ showForum() }
 
         // enable my workmanager class
         workBackgroundManager = (this.applicationContext as ProjectApp).workBackgroundManager
@@ -85,58 +95,41 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
     // enable data fragment here
     private fun showData() {
         supportFragmentManager.popBackStack()
-
         val argumentBundle = Bundle()
+
         if (countryInfo == null) {
-            Toast.makeText(this, "I am here 2", Toast.LENGTH_SHORT).show()
-            Log.i("shengtianyi2", "I am here 2")
             dataManager = (application as ProjectApp).dataManager
             dataManager.getCountry() {
                 if (it.equals(null)) {
-                    Toast.makeText(this, "problem occurred", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Failed Loading Data", Toast.LENGTH_LONG).show()
                 } else {
                     Toast.makeText(this, "Loading Data", Toast.LENGTH_LONG).show()
                 }
                 val input = ArrayList(it)
                 countryInfo = input
                 argumentBundle.putParcelableArrayList(DataOutputFragment.COUNTRY_INFO, input)
-
-                val dataOutputFragment = DataOutputFragment();
-                dataOutputFragment.arguments = argumentBundle
-
-                supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
-                    .addToBackStack(DataOutputFragment.TAG)
-                    .commit()
+                showDataFrag(argumentBundle)
             }
         } else {
-            Toast.makeText(this, "I am here", Toast.LENGTH_SHORT).show()
-            Log.i("shengtianyi2", "I am here1")
             if (stateInfo == null) {
                 argumentBundle.putParcelableArrayList(DataOutputFragment.COUNTRY_INFO, countryInfo)
-
-                val dataOutputFragment = DataOutputFragment();
-                dataOutputFragment.arguments = argumentBundle
-
-                supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
-                    .addToBackStack(DataOutputFragment.TAG)
-                    .commit()
             } else {
                 argumentBundle.putParcelableArrayList(DataOutputFragment.STATE_INFO, stateInfo)
-
-                val dataOutputFragment = DataOutputFragment();
-                dataOutputFragment.arguments = argumentBundle
-
-                supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
-                    .addToBackStack(DataOutputFragment.TAG)
-                    .commit()
             }
+            showDataFrag(argumentBundle)
         }
+    }
+
+    // enable data fragment here
+    private fun showDataFrag(argumentBundle: Bundle) {
+        val dataOutputFragment = DataOutputFragment();
+        dataOutputFragment.arguments = argumentBundle
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragContainer, dataOutputFragment, dataOutputFragment.tag)
+            .addToBackStack(DataOutputFragment.TAG)
+            .commit()
     }
 
     // enable profile fragment here
@@ -148,6 +141,18 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
             .beginTransaction()
             .add(R.id.fragContainer, profileFragment, ProfileFragment.PTAG)
             .addToBackStack(ProfileFragment.PTAG)
+            .commit()
+    }
+
+    // enable Forum fragment here
+    private fun showForum() {
+        supportFragmentManager.popBackStack()
+
+        val forumFragment = ForumFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragContainer, forumFragment, ForumFragment.TAG)
+            .addToBackStack(ForumFragment.TAG)
             .commit()
     }
 

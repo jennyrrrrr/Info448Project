@@ -1,20 +1,18 @@
 package com.example.info448project.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.info448project.ProjectApp
 import com.example.info448project.R
-import com.example.info448project.manager.AccountManager
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.create_account.*
+
 
 class CreateAccountActivity: AppCompatActivity() {
     private lateinit var auth: FirebaseAuth

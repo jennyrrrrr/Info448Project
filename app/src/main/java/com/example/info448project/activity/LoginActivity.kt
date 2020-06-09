@@ -14,11 +14,13 @@ import com.example.info448project.R
 import com.example.info448project.manager.AccountManager
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.log_in.*
 
 class LoginActivity: AppCompatActivity() {
-//    private lateinit var accountManager: AccountManager
+    private lateinit var accountManager: AccountManager
     private lateinit var auth: FirebaseAuth
+//    private lateinit var firebaseFirestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +53,8 @@ class LoginActivity: AppCompatActivity() {
                     if (task.isSuccessful) {
                         Log.i("jen", "loginWithEmail:success", task.exception)
                         Toast.makeText(baseContext, "Authentication success.", Toast.LENGTH_SHORT).show()
+//                        val user = auth.currentUser!!.uid
+//                        accountManager.getUserInfo()
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                     } else {
