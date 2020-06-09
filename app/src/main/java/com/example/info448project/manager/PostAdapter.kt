@@ -49,16 +49,22 @@ class PostAdapter(initialListOfPosts: List<Post>): RecyclerView.Adapter<PostAdap
     }
 
    //Displaying the comments of a post via making the list of comments the list displayed
-    fun goToCommentList(commentlist: List<Post>){
+    fun goToCommentList(basePost: Post){
         if(!isInComments) {
+            var newList = basePost.comments.toMutableList()
+            newList.add(0, basePost)
+
             listCurrentlyToggled = listBeingDisplayed //in case a change was made somehow
-            listBeingDisplayed = commentlist
+            listBeingDisplayed = newList
+
+            isInComments = true
             notifyDataSetChanged()
         }
     }
 
     //Returning to the overall list of posts from the comment view
     fun leaveCommentList(){
+        isInComments = false
         listBeingDisplayed = listCurrentlyToggled
         notifyDataSetChanged()
     }

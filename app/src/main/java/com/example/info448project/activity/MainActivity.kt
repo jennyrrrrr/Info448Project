@@ -66,6 +66,8 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
             showData()
         }
 
+        btnForum.setOnClickListener{ showForum() }
+
         // enable my workmanager class
         workBackgroundManager = (this.applicationContext as ProjectApp).workBackgroundManager
         workBackgroundManager.startFetchForDaily()
