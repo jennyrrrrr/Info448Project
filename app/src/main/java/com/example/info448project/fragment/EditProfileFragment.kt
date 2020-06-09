@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.info448project.ProjectApp
 import com.example.info448project.R
+import com.example.info448project.activity.LocationPickerActivity
 import com.example.info448project.activity.LoginActivity
 import com.example.info448project.manager.AccountManager
 import com.example.info448project.model.UserInfo
@@ -89,5 +90,12 @@ class EditProfileFragment: Fragment() {
             }
             .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
 
+            database.child("users").child("$userId").child("nickname").setValue("$nickname");
+        }
+
+        btnLocation.setOnClickListener {
+            val intent = Intent(context, LocationPickerActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

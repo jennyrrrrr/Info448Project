@@ -34,6 +34,17 @@
     <string name="state">state</string>
     <string name="new_here_create_account">New here? Create account</string>
     <string name="already_have_an_account_log_in">Already have an account? Log in</string>
+    <string name="mapbox_access_token">pk.eyJ1Ijoia2VpdGhyb2IiLCJhIjoiY2thenU2ZXlqMDIwczJxc2g3Y2tlaWJ3cCJ9.BBXyTsxalIEHzALp5gNTzA</string>
+    <string name="location_picker_select_location_button_cancel">Change Location</string>
+    <string name="location_picker_select_location_button_select">Set Location</string>
+    <string name="location_picker_place_name_result">Selected Place Name: %1$s</string>
+    <string name="location_picker_dropped_marker_snippet_no_results">Could Not Parse This Location...</string>
+    <string name="user_location_permission_not_granted">Location permissions are not enabled</string>
+    <string name="user_location_permission_explanation">User location permission is required to use this app</string>
+    <string name="move_map_instruction">Move map to place\nmarker at desired location</string>
+    <string name="title_healthtip_list">HealthTips</string>
+    <string name="title_healthtip_detail">HealthTip Detail</string>
+    <string name="food_desc">You should always handle and prepare food safely, including keeping raw meat seperate from other foods, refrigerating perishable foods, and cooking meat to the right temperature to kill harmful bacteria. In general, because of the poor survivability of coronaviruses on surfaces, there is likely very low risk of spread from food products or packaging. </string>
     <string name="recovered">recovered</string>
     <string name="recovered_2">Recovered</string>
 </resources>

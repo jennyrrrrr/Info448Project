@@ -1,5 +1,7 @@
 package com.example.info448project.activity
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -54,6 +56,7 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
 //        }
 
         showData()
+        btnNews.setOnClickListener { showTips() }
         btnProfile.setOnClickListener {
             btnProfile.setBackgroundResource(R.color.grey)
             btnData.setBackgroundColor(Color.TRANSPARENT)
@@ -83,6 +86,11 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
 
     private fun getDataOutputFragment() =
         supportFragmentManager.findFragmentByTag(DataOutputFragment.TAG) as? DataOutputFragment
+
+    private fun showTips() {
+        val intent = Intent(this, HealthTipListActivity::class.java)
+        startActivity(intent)
+    }
 
     // enable data fragment here
     private fun showData() {

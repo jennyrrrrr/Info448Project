@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/healthtip_detail"
+    style="?android:attr/textAppearanceLarge"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="Food Safety"
+    android:textSize="28dp"
+    android:paddingTop="20dp"
+    android:paddingLeft="18dp"
+    android:textIsSelectable="true"
+    tools:context=".activity.HealthTipDetailFragment"
+        />
+    <TextView
+        android:id="@+id/healthtip_subhead"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="20dp"
+        android:paddingLeft="18dp"
+        android:text="Tip 1 - Wearing Proper PPE"
+        />
+    <TextView
+        android:id="@+id/healthtip_maintext"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"
+        android:textSize="18dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Lorem ipusem this is a paragraph used for testing longer lengths and content that should span multiple rows and lines across the screen just for testing purposes ok."
+        />
+</LinearLayout>
