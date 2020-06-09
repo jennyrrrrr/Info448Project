@@ -6,9 +6,8 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import android.util.Log
+import android.widget.Toast
 import com.example.info448project.AllPosts
-import com.example.info448project.Post
-import com.example.info448project.fragment.ForumFragment
 import com.google.gson.Gson
 
 class ForumDataManager(context: Context) {
@@ -24,34 +23,23 @@ class ForumDataManager(context: Context) {
             Request.Method.GET, url,
             Response.Listener<String> { response ->
                 // Display the first 500 characters of the response string.
-                Log.i("jhoupps", "Response is: ${response.substring(0, 500)}")
+                //Log.i("jhoupps", "Response is: ${response.substring(0, 500)}")
                 val allPosts = parseData(response) //todo change this to be not just general chat
-
                 onSuccessLambdaFunctionThing(allPosts)
             },
-            Response.ErrorListener { Log.i("jhoupps",  "That didn't work!") })
-
+            Response.ErrorListener {
+                Log.i("jhoupps",  "There was an error fetching the data!")
+            })
         // Add the request to the RequestQueue.
         queue.add(stringRequest)
     }
 
-
-
-    //Parse the data that was fetched in JSON form
-    //Uses GSON
+    //Parse the data that was fetched in JSON form using GSON
     fun parseData(theData: String): AllPosts {
         val gson = Gson()
         val allPosts: AllPosts = gson.fromJson(theData, AllPosts::class.java)
-        Log.i("jhoupps","HELLO I AM PARSING DATA")
 
-        allPosts.general.let { //todo change this once i add more tabs
-            Log.i("jhoupps", "Parsed a content of: $it")
-        }
         return allPosts
-
-
     }
-
-
 }
 
