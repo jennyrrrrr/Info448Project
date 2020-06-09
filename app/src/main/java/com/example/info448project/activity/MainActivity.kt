@@ -151,8 +151,8 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
         val forumFragment = ForumFragment()
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragContainer, forumFragment, ForumFragment.TAG)
-            .addToBackStack(ForumFragment.TAG)
+            .replace(R.id.fragContainer, forumFragment, ForumFragment.TAG)
+//            .addToBackStack(ForumFragment.TAG)
             .commit()
     }
 

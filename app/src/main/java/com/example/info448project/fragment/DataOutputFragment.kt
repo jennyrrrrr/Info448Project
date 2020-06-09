@@ -59,15 +59,15 @@ class  DataOutputFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if (savedInstanceState != null) {
-            if (savedInstanceState?.containsKey(COUNTRY_INFO)!!) {
-                countryInfo = savedInstanceState.getParcelableArrayList(COUNTRY_INFO)
-                Toast.makeText(context, countryInfo.toString(), Toast.LENGTH_LONG).show()
-            } else if (savedInstanceState.containsKey(STATE_INFO)) {
-                stateInfo = savedInstanceState.getParcelableArrayList(STATE_INFO)
-                Toast.makeText(context, stateInfo.toString(), Toast.LENGTH_LONG).show()
-            }
-        }
+//        if (savedInstanceState != null) {
+//            if (savedInstanceState?.containsKey(COUNTRY_INFO)!!) {
+//                countryInfo = savedInstanceState.getParcelableArrayList(COUNTRY_INFO)
+//                Toast.makeText(context, countryInfo.toString(), Toast.LENGTH_LONG).show()
+//            } else if (savedInstanceState.containsKey(STATE_INFO)) {
+//                stateInfo = savedInstanceState.getParcelableArrayList(STATE_INFO)
+//                Toast.makeText(context, stateInfo.toString(), Toast.LENGTH_LONG).show()
+//            }
+//        }
     }
 
     override fun onCreateView(
@@ -168,16 +168,16 @@ class  DataOutputFragment: Fragment() {
 
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        val bundle = Bundle()
-
-        if (stateInfo != null) {
-            bundle.putParcelableArrayList(STATE_INFO, stateInfo)
-            onSaveInstanceState(bundle)
-        } else {
-            bundle.putParcelableArrayList(COUNTRY_INFO, countryInfo)
-            onSaveInstanceState(bundle)
-        }
-    }
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        super.onSaveInstanceState(outState)
+//        val bundle = Bundle()
+//
+//        if (stateInfo != null) {
+//            bundle.putParcelableArrayList(STATE_INFO, stateInfo)
+//            onSaveInstanceState(bundle)
+//        } else {
+//            bundle.putParcelableArrayList(COUNTRY_INFO, countryInfo)
+//            onSaveInstanceState(bundle)
+//        }
+//    }
 }
