@@ -88,8 +88,7 @@ class ForumFragment : Fragment() {
                 btnBack.visibility = View.GONE //In case the user was viewing comments at the time
             }
         })
-
-
+        
         //When a user clicks on a post, it displays the comments of that post in the recyclerview
         postAdapter.onPostClickListener = {
             var newList = it.comments.toMutableList()
