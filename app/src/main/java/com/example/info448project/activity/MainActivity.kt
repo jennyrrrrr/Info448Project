@@ -10,11 +10,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.info448project.ProjectApp
-import com.example.info448project.fragment.ProfileFragment
 import com.example.info448project.R
-import com.example.info448project.fragment.DataOutputFragment
-import com.example.info448project.fragment.OnStateSelectListener
-import com.example.info448project.fragment.ForumFragment
+import com.example.info448project.fragment.*
 import com.example.info448project.manager.AccountManager
 import com.example.info448project.manager.DataManager
 import com.example.info448project.manager.WorkBackgroundManager
@@ -33,7 +30,7 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        title = "C19-SUPPORT"
+//        title = "C19-SUPPORT"
 
         accountManager = (this.applicationContext as ProjectApp).accountManager
         supportFragmentManager.addOnBackStackChangedListener {
@@ -56,25 +53,39 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
 //        }
 
         showData()
-        btnNews.setOnClickListener { showTips() }
+        btnNews.setOnClickListener {
+//            title = "Health Tips"
+            btnNews.setBackgroundResource(R.color.mdGrey)
+            btnData.setBackgroundColor(Color.TRANSPARENT)
+            btnForum.setBackgroundColor(Color.TRANSPARENT)
+            btnProfile.setBackgroundColor(Color.TRANSPARENT)
+            showTips()
+        }
+
         btnProfile.setOnClickListener {
+//            title = "Profile"
             btnProfile.setBackgroundResource(R.color.mdGrey)
             btnData.setBackgroundColor(Color.TRANSPARENT)
             btnForum.setBackgroundColor(Color.TRANSPARENT)
+            btnNews.setBackgroundColor(Color.TRANSPARENT)
             showProfile()
         }
 
         btnData.setOnClickListener {
+//            title = "COVID Stats"
             btnData.setBackgroundResource(R.color.mdGrey)
             btnProfile.setBackgroundColor(Color.TRANSPARENT)
-            btnProfile.setBackgroundColor(Color.TRANSPARENT)
+            btnForum.setBackgroundColor(Color.TRANSPARENT)
+            btnNews.setBackgroundColor(Color.TRANSPARENT)
             showData()
         }
 
         btnForum.setOnClickListener{
+//            title = "Forum"
             btnForum.setBackgroundResource(R.color.mdGrey)
             btnProfile.setBackgroundColor(Color.TRANSPARENT)
             btnData.setBackgroundColor(Color.TRANSPARENT)
+            btnNews.setBackgroundColor(Color.TRANSPARENT)
             showForum()
         }
 
@@ -86,7 +97,7 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
             val profileFragment = supportFragmentManager.findFragmentByTag(ProfileFragment.PTAG) as? ProfileFragment
             if (profileFragment != null && profileFragment.isVisible) {
                 profileFragment.setInfo()
-                title="Profile"
+//                title="Profile"
             }
         }
     }
@@ -95,8 +106,16 @@ class MainActivity : AppCompatActivity(), OnStateSelectListener {
         supportFragmentManager.findFragmentByTag(DataOutputFragment.TAG) as? DataOutputFragment
 
     private fun showTips() {
-        val intent = Intent(this, HealthTipListActivity::class.java)
-        startActivity(intent)
+//        val intent = Intent(this, HealthTipListActivity::class.java)
+//        startActivity(intent)
+        supportFragmentManager.popBackStack()
+
+        val healthTipListFragment = HealthTipListFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragContainer, healthTipListFragment, HealthTipListFragment.TAG)
+            .addToBackStack(HealthTipListFragment.TAG)
+            .commit()
     }
 
     // enable data fragment here

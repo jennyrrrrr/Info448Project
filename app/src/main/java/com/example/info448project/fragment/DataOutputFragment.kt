@@ -23,9 +23,7 @@ import com.github.mikephil.charting.data.LineDataSet
 class  DataOutputFragment: Fragment() {
     companion object {
         val TAG = StateCardFragment::class.java.simpleName
-
         const val STATE_INFO = "state list"
-
         const val COUNTRY_INFO = "country list"
     }
 

@@ -39,11 +39,12 @@ class HealthTipListFragment: Fragment() {
         return layoutInflater.inflate(R.layout.activity_healthtip_list, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity?.title = "Health Tips"
 
         (activity as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity?)?.supportActionBar?.title = (activity as AppCompatActivity?)?.title
+//        (activity as AppCompatActivity?)?.supportActionBar?.title = (activity as AppCompatActivity?)?.title
 
         if (healthtip_detail_container != null) {
             // The detail container view will be present only in the
@@ -52,7 +53,7 @@ class HealthTipListFragment: Fragment() {
             // activity should be in two-pane mode.
             twoPane = true
         }
-        val healthtip_list = view?.findViewById<RecyclerView>(R.id.healthtip_list)
+        val healthtip_list = view.findViewById<RecyclerView>(R.id.healthtip_list)
         if (healthtip_list != null) {
             setupRecyclerView(healthtip_list)
         }
@@ -84,7 +85,7 @@ class HealthTipListFragment: Fragment() {
                     val mainActivity = MainActivity()
                     mainActivity.supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.healthtip_detail_container, fragment)
+                        .add(R.id.healthtip_detail_container, fragment)
                         .commit()
                 } else {
                     val intent = Intent(v.context, HealthTipDetailActivity::class.java).apply {

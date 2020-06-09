@@ -47,7 +47,7 @@ class EditProfileFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity?.title = "Edit Profile"
+//        activity?.title = "Edit Profile"
 
         database = FirebaseDatabase.getInstance().reference
         accountManager = (context?.applicationContext as ProjectApp).accountManager

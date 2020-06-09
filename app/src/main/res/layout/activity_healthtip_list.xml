@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".fragment.HealthTipListFragment">
+    tools:context=".fragment.HealthTipListFragment"
+    android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -16,7 +18,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="0dp"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -40,10 +42,11 @@
         android:text="Select a category to view tips and information"
         app:layout_anchor="@+id/app_bar"
         app:layout_anchorGravity="bottom|center" />
+
     <View
         android:layout_width="250dp"
         android:layout_height="2dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="190dp"
         android:background="@color/colorPrimary"
         app:layout_anchor="@+id/app_bar"
         app:layout_anchorGravity="bottom|center"/>
@@ -52,7 +55,7 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="200dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <include layout="@layout/healthtip_list" />
