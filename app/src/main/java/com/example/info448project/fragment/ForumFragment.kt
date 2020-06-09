@@ -20,20 +20,14 @@ Overall Fragment architecture - This fragment fetches data in JSON format,
 then displays it in a recyclerview
 
 To do:
-- set up multiple tabs
-- comment and organize code
 - merge!
+- squash comment number bug
 - expandable posts
 - set up ability to modify data
  */
 class ForumFragment : Fragment() {
     companion object {
         val TAG: String = ForumFragment::class.java.simpleName
-    }
-
-    //for getting the context
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
     }
 
 
