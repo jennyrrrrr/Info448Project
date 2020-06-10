@@ -18,15 +18,22 @@ Users will be able to log in their account, view, and edit their profile.
 Users will also be able to see their posts and replies in the profile tab. 
 
 ## Screens
-<img src="./appscreenshot/screenshot1.png" alt="Screenshot of the app" height="200" />
-<img src="./appscreenshot/screenshot2.png" alt="Screenshot of the app" height="200" />
-<img src="./appscreenshot/screenshot3.png" alt="Screenshot of the app" height="200" />
-<img src="./appscreenshot/screenshot4.png" alt="Screenshot of the app" height="200" />
-<img src="./appscreenshot/screenshot5.png" alt="Screenshot of the app" height="200" />
-<img src="./appscreenshot/screenshot6.png" alt="Screenshot of the app" height="200" />
-<img src="./appscreenshot/screenshot7.png" alt="Screenshot of the app" height="200" />
-<img src="./appscreenshot/screenshot8.png" alt="Screenshot of the app" height="200" />
-<img src="./appscreenshot/screenshot9.png" alt="Screenshot of the app" height="200" />
-<img src="./appscreenshot/screenshot10.png" alt="Screenshot of the app" height="200" />
-<img src="./appscreenshot/screenshot11.png" alt="Screenshot of the app" height="200" />
+<p align="middle">
+<img src="./appscreenshot/screenshot1.png" alt="Screenshot of the app" height="300" />
+<img src="./appscreenshot/screenshot2.png" alt="Screenshot of the app" height="300" />
+<img src="./appscreenshot/screenshot3.png" alt="Screenshot of the app" height="300" />
+</p>
+<p align="middle">
+<img src="./appscreenshot/screenshot4.png" alt="Screenshot of the app" height="300" />
+<img src="./appscreenshot/screenshot5.png" alt="Screenshot of the app" height="300" />
+</p>
+<p align="middle">
+<img src="./appscreenshot/screenshot6.png" alt="Screenshot of the app" height="300" />
+<img src="./appscreenshot/screenshot7.png" alt="Screenshot of the app" height="300" />
+<img src="./appscreenshot/screenshot8.png" alt="Screenshot of the app" height="300" />
+</p>    
+<p align="middle">
+<img src="./appscreenshot/screenshot10.png" alt="Screenshot of the app" height="300" />
+<img src="./appscreenshot/screenshot11.png" alt="Screenshot of the app" height="300" />
+</p>
 
